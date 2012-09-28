@@ -1,0 +1,38 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<% if resource.errors.any?%>
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong>Foram encontrados alguns erros:</strong><br/>
+			<ul>
+			<% resource.errors.each do |field, message|%>
+				  <li><%= "#{field.capitalize} #{message}" %></li>
+			 <% end %>
+			</ul>
+		</div> 
+<% end %>
+<div class="div-central">
+<div class="control-group">
+  <div class="controls">  	
+    <%= f.text_field :name, :placeholder => 'Nome', :value => '' %>
+  </div>
+  <div class="controls">  	
+    <%= f.email_field :email, :placeholder => 'Email', :value => '' %>
+  </div>
+  <div class="controls">
+    <%= f.password_field :password, :placeholder => 'Senha' %>
+  </div>
+  <div class="controls">
+    <%= f.password_field :password_confirmation, :placeholder => 'Repita sua senha'%>  
+ </div>
+  <div><%= f.submit "Cadastrar", :class => 'btn btn-warning'%></div>
+</div>
+<%= render "devise/shared/links" %>
+<% end %>
+<div class="article_seperator"></div>
+<br/>
+<p class="text-info">@Bolão online</p>
+</div>
+<script type="text/javascript">
+//$("user_email").val("Marcelin")
+//document.write("<p>Hello from javascript!</p>")
+</script>

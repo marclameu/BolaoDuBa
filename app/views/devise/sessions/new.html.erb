@@ -1,0 +1,43 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => 'form-horizontal') do |f| %>
+<% flash.each do |name, msg| %>
+  <% if msg.class == Array %>
+    <% msg.each do|message| %>
+      <div class="alert">
+	  <button type="button" class="close" data-dismiss="alert">×</button>
+	  <strong>Erro!</strong> <%= message %>
+	  </div>      
+    <% end %>
+  <%else%>
+	  <div class="alert">
+	  <button type="button" class="close" data-dismiss="alert">×</button>
+	  <strong>Erro!</strong> <%= msg %>
+	  </div>
+  <% end %>
+<% end %>
+<div class="div-central">
+<div class="control-group">
+  <div class="controls">  	
+    <%= f.email_field :email, :placeholder => 'Email' %>
+  </div>
+  <div class="controls">
+    <%= f.password_field :password, :placeholder => 'Senha' %>
+  </div>
+  <div>
+  <div class="controls">	
+     <%= f.submit "Efetuar Login", :class => 'btn btn-warning' %>
+     <%= link_to "Ainda não me cadastrei", new_user_registration_path, :class => 'btn btn-warning' %>
+  </div>
+  </div>
+</div>
+<br/>
+<div class="article_seperator"></div>
+<br/>
+<p class="text-info">@Bolão online</p>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  $function(){
+    	
+  }
+</script>
