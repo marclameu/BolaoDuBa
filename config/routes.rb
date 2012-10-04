@@ -1,4 +1,8 @@
 BolaoOnline::Application.routes.draw do
+  resources :rounds
+
+  resources :championships
+
   devise_for :users
 
   resources :users
