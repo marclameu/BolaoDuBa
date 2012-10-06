@@ -1,4 +1,10 @@
 BolaoOnline::Application.routes.draw do
+  resources :gambles
+
+  resources :matches
+
+  resources :teams
+
   resources :rounds
 
   resources :championships

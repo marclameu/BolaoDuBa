@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Active:</b>
+  <%= @gamble.active %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @gamble.user %>
+</p>
+
+<p>
+  <b>Team 1:</b>
+  <%= @gamble.team_1 %>
+</p>
+
+<p>
+  <b>Team 2:</b>
+  <%= @gamble.team_2_id %>
+</p>
+
+<p>
+  <b>Goals team 1:</b>
+  <%= @gamble.goals_team_1 %>
+</p>
+
+<p>
+  <b>Goals team 2:</b>
+  <%= @gamble.goals_team_2 %>
+</p>
+
+<p>
+  <b>Match:</b>
+  <%= @gamble.match %>
+</p>
+
+
+<%= link_to 'Edit', edit_gamble_path(@gamble) %> |
+<%= link_to 'Back', gambles_path %>

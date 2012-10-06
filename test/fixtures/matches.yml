@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  team_1: 1
+  team_2: 1
+  goals_team_1: 1
+  goals_team_2: 1
+  date_match: 2012-10-04 23:09:54
+  round: 
+
+two:
+  team_1: 1
+  team_2: 1
+  goals_team_1: 1
+  goals_team_2: 1
+  date_match: 2012-10-04 23:09:54
+  round: 

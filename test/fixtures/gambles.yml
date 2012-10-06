@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  active: 1
+  user: 
+  team_1: 
+  team_2_id: 1
+  goals_team_1: 1
+  goals_team_2: 1
+  match: 
+
+two:
+  active: 1
+  user: 
+  team_1: 
+  team_2_id: 1
+  goals_team_1: 1
+  goals_team_2: 1
+  match: 

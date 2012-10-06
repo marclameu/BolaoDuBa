@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  num_round: 
+  desc: MyString
+  id_championship: 
+
+two:
+  num_round: 
+  desc: MyString
+  id_championship: 
