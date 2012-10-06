@@ -1,3 +1,4 @@
+#comentarios Flavio
 class UsersController < ApplicationController
   
   def admin
