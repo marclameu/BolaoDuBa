@@ -30,9 +30,20 @@
     </div>
   </div>
 </div>
-
-<div class="container">
-  <%= yield %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+		<ul class="nav nav-pills nav-stacked span3">
+			<li> <%= link_to 'Apostas', '#'%> </li>
+			<li><%= link_to 'Ranking', '#'%></li>
+			<li><%= link_to 'Times', '#'%></li>
+			<li><%= link_to 'Clasificação', '#'%></li>									
+		</ul>
+    </div>
+    <div class="span10">
+	  <%= yield %>
+    </div>
+  </div>
 </div>
 </body>
 </html>
