@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
+<% if user_signed_in? %>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -30,11 +30,12 @@
     </div>
   </div>
 </div>
+<br>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
-		<ul class="nav nav-pills nav-stacked span3">
-			<li> <%= link_to 'Apostas', '#'%> </li>
+		<ul class="nav nav-pills span3">
+			<li class = "active"> <%= link_to 'Apostas', '#'%> </li>
 			<li><%= link_to 'Ranking', '#'%></li>
 			<li><%= link_to 'Times', '#'%></li>
 			<li><%= link_to 'Clasificação', '#'%></li>									
@@ -45,5 +46,8 @@
     </div>
   </div>
 </div>
+<% else %>
+  <%= yield %>
+<%end%>
 </body>
 </html>
