@@ -1,3 +1,4 @@
+#comentarios Flavio MERGE de arquivos
 #comentarios Flavio
 class UsersController < ApplicationController
   
