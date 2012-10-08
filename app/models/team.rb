@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
   attr_accessible :description, :name
   attr_accessible :image
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>"}
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "60x60>"}
   has_many :matches
   has_and_belongs_to_many :users
 #  has_many :gambles

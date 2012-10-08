@@ -23,7 +23,32 @@
 	border-bottom-color: #cccccc;
 	margin:0 0 0 -65%;
 }
-.botao_usuario
+.sep-teams
 {
-	
+  	margin:10px 0 0 0;	
+	width: 70%;
+}
+
+.span-date
+{
+	width:5000px;
+	font-family:verdana;
+	font-size:20px;
+	margin:18px 0 0 0;
+}
+.span-versus
+{
+	margin:15px 0 0 0;
+}
+.bordex
+{
+	border:solid;	
+}
+a:link, a:visited, a:active, a:hover
+{
+	text-decoration:none;
+}
+.basic-link a:hover
+{
+	text-decoration:none;
 }
