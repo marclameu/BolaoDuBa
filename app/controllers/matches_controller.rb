@@ -2,7 +2,8 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all
+    #@matches = Match.all
+    @matches = Match.matches_after_date(Time.now, params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

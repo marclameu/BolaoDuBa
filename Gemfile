@@ -27,6 +27,8 @@ gem 'twitter-bootstrap-rails'
 
 gem 'paperclip'
 
+gem 'will_paginate'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -15,6 +15,11 @@
 <br/>
 <br/>
 <% end %>
+
+<div class="flickr_pagination">
+    <%= will_paginate @matches, :previous_label => '← Anterior', :next_label => 'Próximo →', :container => false %>
+</div>
+
 </div>
 
 <br />
