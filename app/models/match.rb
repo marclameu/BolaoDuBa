@@ -11,4 +11,8 @@ class Match < ActiveRecord::Base
   #            :order => 'date_match'
     where("date_match > ?", [date]).paginate(:page => page, :per_page => 4 ).order('date_match ASC')
   end
+  
+  def self.user_matches(user_team)
+    Match.where("team_1_id = #{user_team} or team_2_id = #{user_team}")
+  end
 end

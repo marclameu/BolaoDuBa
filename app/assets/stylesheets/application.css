@@ -56,3 +56,15 @@ a:link, a:visited, a:active, a:hover
 {
 	text-decoration:none;
 }
+.goals_input
+{
+  width:30px;
+  height:100px;
+  margin:10px 0 0 0;	
+}
+.goals_button
+{
+	margin:17px 0 0 0;	
+  
+}
+

@@ -7,8 +7,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all(:joins => :teams)
-
+    #@user = User.all(:joins => :teams)
+    @user = User.find(current_user.id)
+    @match = Match.user_matches(@user.teams.first.id).first
+    @gamble = Gamble.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

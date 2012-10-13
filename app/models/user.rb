@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :born_date, :email, :name, :image
   has_many :gambles
   has_and_belongs_to_many :teams
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "300x80>"}
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "300x180>"}
 end
