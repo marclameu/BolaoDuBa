@@ -3,7 +3,8 @@ class GamblesController < ApplicationController
   # GET /gambles.json
   def index
     @gambles = Gamble.all
-
+    @teste[1] = "active"
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gambles }
