@@ -9,17 +9,19 @@
 <% if user_signed_in? %>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-		<%= link_to (image_tag "logo.gif"), users_path %>	  
+		<%= link_to (image_tag "logo.gif"), root_path %>	  
 		<br/>
    </div>
 </div>
 <br/>
-<br/>
+<div>
+</div>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span2">		
+    <div class="span2">	
 	  <ul class="nav nav-pills nav-stacked">
-			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Apostas", root_path %></li>
+		    <li><%= link_to (image_tag current_user.image.url(:thumb), :alt => current_user.name), current_user %></li>
+			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
 		    <li class="<%= 'active' if current_page?(matches_path) %>"><%= link_to "Partidas da rodada", matches_path %></li>
 		    <li class="<%= 'active' if current_page?(teams_path ) %>"><%= link_to "Times", teams_path %></li>
 			<li><%= link_to 'Logoff', destroy_user_session_path, :confirm => 'Deseja efetur logoff?'%></li>									  
