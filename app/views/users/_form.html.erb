@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %><br /> 
     <%= f.text_field :name %>
   </div>
   <div class="field">
@@ -21,7 +21,10 @@
   </div>
   <div class="field">
     <%= f.label :born_date %><br />
-    <%= f.datetime_select :born_date %>
+    <%= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
+  </div>
+  <div class="field">
+	   <%= f.file_field :image %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -18,6 +18,15 @@
   <div class="controls">  	
     <%= f.email_field :email, :placeholder => 'Email', :value => '' %>
   </div>
+  <div class="controls">  	
+    <%= f.text_field :Cpf, :placeholder => 'CPF', :value => '' %>
+  </div>
+ <div class="controls">  
+    <%= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
+  </div>
+  <div class="field">
+	   <%= f.file_field :image %>
+  </div>
   <div class="controls">
     <%= f.password_field :password, :placeholder => 'Senha' %>
   </div>

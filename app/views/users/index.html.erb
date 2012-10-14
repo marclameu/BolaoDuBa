@@ -4,14 +4,34 @@
 <p> 
 	<h3>Próxima partida do seu time:</h3>
 </p>
-<%= form_for(@gamble) do |f|%>
-<div class="row-fluid show-grid">
-	<div class="span1"><%= f.text_field :goals_team_1, :class => "goals_input",:style=>"height:40px;font-size:20px;text-align:center;"%></div>
-    <div class="span1"><%= link_to (image_tag @match.team1.image.url(:thumb)), @match.team1, :class =>'basic-link' %></div>
-    <div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
-    <div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
-	<div class="span1"><%= f.text_field :goals_team_2, :class => "goals_input", :style=>"height:40px;font-size:20px;text-align:center;"%></div>
-	<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
-	<div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
-</div>
-<%end%>
+<p>  
+  <% if @team %>
+      <p>
+        <div>
+          <%= image_tag @user.image.url(:thumb) %>
+          <%= @user.name %><br>
+          <%= image_tag @team.image.url(:thumb) %>
+          <%= @team.name %>
+        </div>
+      </p>
+      <p>
+        <% if @match %>
+          <%= render 'gamble' %>
+        <% else%>
+          Não existe partida cadastra ainda, blz? <br>
+          Assim que tiver a gente te fala Diouh <br>
+          <i>Ass: Bah<i>
+        <% end %>
+      </p>
+  <% else %>
+    <p>
+      Aposte logo na vitoria do seu time, escolha-o e participe do BolaoDuBah !!! </br>          
+    </p>
+    <p>
+      Seja vencedor assim como o pessoal que desenvolveu este site.
+    </p>
+    <p>
+     <%= render 'team' %>
+    </p> 
+  <% end %>
+</p>

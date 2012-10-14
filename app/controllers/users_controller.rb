@@ -8,8 +8,11 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     #@user = User.all(:joins => :teams)
-    @user = User.find(current_user.id)
-    @match = Match.user_matches(@user.teams.first.id).first
+    @user = User.find(current_user.id)  
+    @team = @user.teams.first
+    if @team
+      @match = Match.user_matches(@team.id).first
+    end
     @gamble = Gamble.new
     respond_to do |format|
       format.html # index.html.erb

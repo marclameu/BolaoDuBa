@@ -26,7 +26,9 @@ class MatchesController < ApplicationController
   # GET /matches/new.json
   def new
     @match = Match.new
-
+    @teams = Team.all
+    @round = Round.last
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @match }
