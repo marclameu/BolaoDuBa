@@ -42,6 +42,8 @@ class GamblesController < ApplicationController
   # POST /gambles.json
   def create
     @gamble = Gamble.new(params[:gamble])
+    @gamble.match = Match.find(params[:match_id])
+    @gamble = Gamble.create_gamble4_user(@gamble, current_user)
 
     respond_to do |format|
       if @gamble.save

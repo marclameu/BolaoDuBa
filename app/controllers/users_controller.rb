@@ -9,7 +9,13 @@ class UsersController < ApplicationController
   def index
     #@user = User.all(:joins => :teams)
     @user = User.find(current_user.id)
-    @match = Match.user_matches(@user.teams.first.id).first
+    if @user.teams.present?
+      team_user_id = @user.teams.first.id
+      @match = Match.user_matches(team_user_id).first
+    else
+      @match = Match.first
+    end
+    @gambles = Gamble.find_all_user_gambles(@user)
     @gamble = Gamble.new
     respond_to do |format|
       format.html # index.html.erb
@@ -85,6 +91,9 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+  
+  def new_gamble
   end
 end
 #Comentário de Marcelino lameu da silva
