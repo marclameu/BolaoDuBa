@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController
+  class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
   # GET /teams/new.json
   def new
     @team = Team.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @team }

@@ -13,27 +13,31 @@
 
   <div class="field">
     <%= f.label :team_1 %><br />
-    <%= f.number_field :team_1 %>
+    <%= f.select :team_1_id, @teams, :prompt => "Select.." %>
   </div>
   <div class="field">
     <%= f.label :team_2 %><br />
-    <%= f.number_field :team_2 %>
+    <%= f.select :team_2_id, @teams, :prompt => "Select.." %>
   </div>
   <div class="field">
     <%= f.label :goals_team_1 %><br />
-    <%= f.number_field :goals_team_1 %>
+    <%= f.number_field :goals_team1 %>
   </div>
   <div class="field">
     <%= f.label :goals_team_2 %><br />
-    <%= f.number_field :goals_team_2 %>
+    <%= f.number_field :goals_team2 %>
   </div>
   <div class="field">
-    <%= f.label :date_match %><br />
-    <%= f.datetime_select :date_match %>
+    <%= f.label :date_match, "Data Partida" %><br />
+    <%= f.date_select :date_match, :order => [:day, :month, :year], :placeholder => 'Data partida', :value => '' %>	
   </div>
   <div class="field">
     <%= f.label :round %><br />
-    <%= f.text_field :round %>
+    <% if !@round.nil? %>
+      <%= f.select :round, @round, :prompt => "Select.." %>
+    <% else %>
+      Cadastre uma nova rodada
+    <% end%>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -17,8 +17,12 @@ class Gamble < ActiveRecord::Base
     #@gamble.save
   end
     
-  def self.find_all_user_gambles(user)
-    @gambles = Gamble.where("user_id = ?",[user.id])
+  def self.find_all_user_gambles(user,page = nil)
+    #if page == nil
+     # @gambles = Gamble.where("user_id = ?",[user.id])
+    #else
+      @gambles = Gamble.where("user_id = ?",[user.id]).paginate(:page => page, :per_page => 4)
+    #end
     @gambles
   end
   #belongs_to :team1, :class_name => "Team", :foreign_key => 'team_1_id'

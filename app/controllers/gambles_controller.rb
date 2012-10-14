@@ -1,10 +1,10 @@
 class GamblesController < ApplicationController
+  respond_to :js
   # GET /gambles
   # GET /gambles.json
   def index
-    @gambles = Gamble.all
-    @teste[1] = "active"
-    
+    @gambles = Gamble.find(:all).paginate(:page => params[:page], :per_page => 4)
+        
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gambles }
@@ -47,11 +47,14 @@ class GamblesController < ApplicationController
 
     respond_to do |format|
       if @gamble.save
-        format.html { redirect_to @gamble, notice: 'Gamble was successfully created.' }
-        format.json { render json: @gamble, status: :created, location: @gamble }
+        #format.html { redirect_to @gamble, notice: 'Gamble was successfully created.' }
+        #format.json { render json: @gamble, status: :created, location: @gamble }
+        @gambles = Gamble.find_all_user_gambles(current_user, params[:page])
+        format.js
       else
-        format.html { render action: "new" }
-        format.json { render json: @gamble.errors, status: :unprocessable_entity }
+        #format.html { render action: "new" }
+        #format.json { render json: @gamble.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

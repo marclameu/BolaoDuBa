@@ -16,6 +16,11 @@ class UsersController < ApplicationController
       @match = Match.first
     end
     @gambles = Gamble.find_all_user_gambles(@user)
+    @user = User.find(current_user.id)  
+    @team = @user.teams.first
+    if @team
+      @match = Match.user_matches(@team.id).first
+    end
     @gamble = Gamble.new
     respond_to do |format|
       format.html # index.html.erb
