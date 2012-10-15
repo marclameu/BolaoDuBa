@@ -1,0 +1,18 @@
+<%= form_for @gamble, :remote => true, :url => {:controller => "gambles", :action => "create", :match_id=> @match.id,} do |f|%>
+<div class="row-fluid show-grid">
+	<div class="span1"><%= f.text_field :goals_team_1, :class => "goals_input",:style=>"height:40px;font-size:20px;text-align:center;"%></div>
+    <div class="span1"><%= link_to (image_tag @match.team1.image.url(:thumb)), @match.team1, :class =>'basic-link' %></div>
+    <div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
+    <div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
+	<div class="span1"><%= f.text_field :goals_team_2, :class => "goals_input", :style=>"height:40px;font-size:20px;text-align:center;"%></div>
+	<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
+	<div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
+</div>
+<%end%>
+<div class="article_seperator sep-teams"></div>
+<p> 
+	<h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Histórico de apostas</h3>
+</p>
+ <%= render "gambles/historic_of_gambles"%>
+
+<div class="article_seperator sep-teams"></div>
