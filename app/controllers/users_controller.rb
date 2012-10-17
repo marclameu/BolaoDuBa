@@ -16,12 +16,10 @@ class UsersController < ApplicationController
       @match = Match.first
     end
     @gambles = Gamble.find_all_user_gambles(@user)
-    @user = User.find(current_user.id)  
     @team = @user.teams.first
-    if @team
-      @match = Match.user_matches(@team.id).first
-    end
-    @gamble = Gamble.new
+	@gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+	@gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : Gamble.new
+	#@gamble = Gamble.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
