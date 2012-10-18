@@ -34,7 +34,7 @@
     <%= f.password_field :password_confirmation, :placeholder => 'Repita sua senha'%>  
  </div>
  <div class="controls">
-     <%= f.collection_select :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
+     <%= collection_select  :team, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
  </div>
   <div><%= f.submit "Cadastrar", :class => 'btn btn-warning'%></div>
 </div>
