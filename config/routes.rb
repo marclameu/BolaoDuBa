@@ -9,7 +9,7 @@ BolaoOnline::Application.routes.draw do
 
   resources :championships
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'registrations'}
 
   resources :users
   

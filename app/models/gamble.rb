@@ -2,6 +2,11 @@ class Gamble < ActiveRecord::Base
   belongs_to :user
   belongs_to :match
   attr_accessible :active, :goals_team_1, :goals_team_2, :team_2_id
+  validates_presence_of :goals_team_1, :message => "Por favor, informe o numero de gols do time 1"
+  validates_presence_of :goals_team_1, :message => "Por favor, informe o numero de gols do time 1"
+  validates_numericality_of :goals_team_1, :greather_than => 0, :message => "Numero de gols do time 1 deve ser maior ou igual a 0"
+  validates_presence_of :goals_team_2, :message => "Numero de gols do time 2 deve ser maior ou igual a 0"
+  
   def self.create_gamble4_user(gamble,user)
     @gamble = gamble
     @gamble.user = user   

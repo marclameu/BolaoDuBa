@@ -83,11 +83,16 @@ class GamblesController < ApplicationController
   # DELETE /gambles/1.json
   def destroy
     @gamble = Gamble.find(params[:id])
-    @gamble.destroy
-
-    respond_to do |format|
-      format.html { redirect_to gambles_url }
-      format.json { head :no_content }
-    end
+    @match = @gamble.match
+    if @gamble.destroy
+	  @gamble = Gamble.new
+      @gamble4_current_match = nil
+	
+      respond_to do |format|
+       # format.html { redirect_to gambles_url }
+        #format.json { head :no_content }
+	     format.js 
+      end
+	end
   end
 end
