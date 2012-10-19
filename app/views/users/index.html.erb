@@ -1,4 +1,9 @@
 <p>
-	<span class="label label-info">Ola <%= current_user.name %>, você está no bolao du bah!!!<br/></span>
+<% if current_user.teams.present? %>
+	<span class="label label-info">Ola <%= current_user.name %>, torcedor(a) do <%= current_user.teams.first.name %>, você está no bolao du bah!!!<br/></span>
+<% else %>
+   	<span class="label label-info">Ola <%= current_user.name %>, você está no bolao du bah!!!<br/></span>
+<% end %>
 </p>
+
   <%= render 'gambles'%>
