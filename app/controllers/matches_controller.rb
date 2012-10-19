@@ -4,6 +4,7 @@ class MatchesController < ApplicationController
   def index
     #@matches = Match.all
     @matches = Match.matches_after_date(Time.now, params[:page])
+    @teams = Team.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +45,10 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = Match.new(params[:match])
+    @team = Team.find(params[:team1][:id])
+    @match.team1 = @team    
+    @team = Team.find(params[:team2][:id])
+    @match.team2 = @team
 
     respond_to do |format|
       if @match.save

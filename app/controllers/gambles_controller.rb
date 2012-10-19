@@ -42,7 +42,7 @@ class GamblesController < ApplicationController
   # POST /gambles.json
   def create
     @gamble = Gamble.new(params[:gamble])
-	@match = Match.find(params[:match_id])
+	  @match = Match.find(params[:match_id])
     @gamble.match = @match
     @gamble = Gamble.create_gamble4_user(@gamble, current_user)
 
@@ -50,14 +50,15 @@ class GamblesController < ApplicationController
       if @gamble.save
         #format.html { redirect_to @gamble, notice: 'Gamble was successfully created.' }
         #format.json { render json: @gamble, status: :created, location: @gamble }
-		@gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
-		@gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : nil
-#        @gambles = Gamble.find_all_user_gambles(current_user, params[:page])
+		    @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+		    @gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : nil
+    #        @gambles = Gamble.find_all_user_gambles(current_user, params[:page])
+        flash[:notice] = "A aposta esta feita Giow!"
         format.js
       else
         #format.html { render action: "new" }
         #format.json { render json: @gamble.errors, status: :unprocessable_entity }
-		@gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+		    @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
         format.js
       end
     end
