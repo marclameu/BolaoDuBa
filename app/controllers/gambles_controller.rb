@@ -3,7 +3,7 @@ class GamblesController < ApplicationController
   # GET /gambles
   # GET /gambles.json
   def index
-    @gambles = Gamble.find(:all).paginate(:page => params[:page], :per_page => 4)
+    @active_gambles = Gamble.active_gambles.paginate(:page => params[:page], :per_page => 4)
         
     respond_to do |format|
       format.html # index.html.erb
@@ -96,4 +96,7 @@ class GamblesController < ApplicationController
       end
 	end
   end
+  def active_gambles
+    @active_gambles = Gamble.active_gambles
+  end  
 end
