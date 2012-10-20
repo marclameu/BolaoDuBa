@@ -29,6 +29,8 @@ gem 'paperclip'
 
 gem 'will_paginate'
 
+#gem 'jcountdown-rails', :git => 'http://github.com/rezwyi/jcountdown-rails.git'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

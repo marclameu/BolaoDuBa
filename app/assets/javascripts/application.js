@@ -14,5 +14,16 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
-
+/*
+$(document).ready(function() {
+  var data = '2012-10-20-23:00:00'
+  $("#jcountdown").setCountdown({
+    //Date for the countdown
+    targetDate: data,
+    //Labels for days/hours/minutes/seconds,
+    //[ 'Days', 'Hours', 'Minutes', 'Seconds' ] by default
+    itemLabels: [ 'Dia', '', '', '' ]
+  });
+});
+*/
 
