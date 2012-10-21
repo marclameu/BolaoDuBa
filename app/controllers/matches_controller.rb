@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     #@matches = Match.all
-    @matches = Match.matches_after_date(Time.now, params[:page])
+    @matches = Match.matches_after_date(ApplicationHelper.get_utc_time, params[:page])
     @teams = Team.all
 
     respond_to do |format|

@@ -11,18 +11,21 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     if @user.teams.present?
       team_user_id = @user.teams.first.id
-      @match = Match.user_matches(team_user_id).first
-    else
-      @match = Match.first
+      @match =  Match.user_matches(team_user_id)
+      @match = (@match == nil)? nil : @match.first
+    #else
+      #@match = Match.first
     end
-    @gambles = Gamble.find_all_user_gambles(@user)
-    @team = @user.teams.first
-	@gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
-	@gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : Gamble.new
-	#@gamble = Gamble.new
+    unless @match == nil
+      @gambles = Gamble.find_all_user_gambles(@user)
+      @team = @user.teams.first
+  	  @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+  	  @gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : Gamble.new
+  	  #@gamble = Gamble.new
+    end
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
+      #format.json { render json: @users }
     end
   end
 

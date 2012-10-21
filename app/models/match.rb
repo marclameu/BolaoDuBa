@@ -6,13 +6,10 @@ class Match < ActiveRecord::Base
   has_many :gambles
   
   def self.matches_after_date (date, page)
-   # paginate  :per_page => 5, :page => page,
-  #            :conditions => ['date_match > ?', date],
-  #            :order => 'date_match'
     where("date_match > ?", [date]).paginate(:page => page, :per_page => 4 ).order('date_match ASC')
   end
   
   def self.user_matches(user_team)
-    Match.where("team_1_id = #{user_team} or team_2_id = #{user_team}")
+    Match.where("team_1_id = #{user_team} or team_2_id = #{user_team} and date_match > '#{ApplicationHelper.get_utc_time}'")
   end
 end
