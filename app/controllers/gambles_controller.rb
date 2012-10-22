@@ -86,7 +86,7 @@ class GamblesController < ApplicationController
     @gamble = Gamble.find(params[:id])
     @match = @gamble.match
     if @gamble.destroy
-	  @gamble = Gamble.new
+	    @gamble = Gamble.new
       @gamble4_current_match = nil
 	
       respond_to do |format|

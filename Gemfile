@@ -29,6 +29,10 @@ gem 'paperclip'
 
 gem 'will_paginate'
 
+#gem 'mechanize'
+
+#gem install nokogiri -- --with-xml2-include=/usr/local/include/libxml2 --with-xml2-lib=/usr/local/lib
+
 #gem 'jcountdown-rails', :git => 'http://github.com/rezwyi/jcountdown-rails.git'
 
 # To use ActiveModel has_secure_password

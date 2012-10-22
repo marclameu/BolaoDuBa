@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html # index.html.erb
-      #format.json { render json: @users }
+      format.json { render json: @user }
     end
   end
 
@@ -59,8 +59,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @team = Team.find(params[:team_id])
-	@user.teams << @team
+    #@team = Team.find(params[:team_id])
+	  #@user.teams << @team
 	
     respond_to do |format|
       if @user.save
