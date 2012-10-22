@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(params[:user])
     @team = Team.find(params[:team][:id])
-	@user.teams << @team
+	  #@user.teams << @team
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

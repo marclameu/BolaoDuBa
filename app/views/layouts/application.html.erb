@@ -1,15 +1,20 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
-  <title>BolaoOnline</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <title>Bolão duBah Jiow!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <%= stylesheet_link_tag "bootstrap" %>
+  <%= stylesheet_link_tag "docs" %>
+  <%# csrf_meta_tags %>
 </head>
 <body>
 <% if user_signed_in? %>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-		<%= link_to (image_tag "logo.gif"), root_path %>	  
+		<%= image_tag "logo.gif" %>	  
 		<br/>
    </div>
 </div>
@@ -37,8 +42,6 @@
   <%= yield %>
 <%end%>
 </body>
-
-<%= javascript_include_tag "application" %>
-
+<%# javascript_include_tag "application" %>
 </html>
 

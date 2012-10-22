@@ -1,0 +1,24 @@
+.bolaodubah-header-bar
+{
+    height: 71px;
+    background: #f1f1f1;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+}
+
+.content
+{
+    padding: 0 44px;
+}
+
+.header .logo
+{
+    margin: 17px 0 0;
+    float: left;
+}
+.stats
+{
+    border-bottom: 1px solid #DDD;
+    margin: 0 0 17px 0;
+    padding: 6px 0 15px 0;
+}

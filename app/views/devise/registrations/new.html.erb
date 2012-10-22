@@ -1,50 +1,63 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-<% if resource.errors.any?%>
-		<div class="alert">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong>Foram encontrados alguns erros:</strong><br/>
-			<ul>
-			<% resource.errors.each do |field, message|%>
-				  <li><%= "#{field.capitalize} #{message}" %></li>
-			 <% end %>
-			</ul>
-		</div> 
-<% end %>
-<div class="div-central">
-<div class="control-group">
-  <div class="controls">  	
-    <%= f.text_field :name, :placeholder => 'Nome', :value => '' %>
-  </div>
-  <div class="controls">  	
-    <%= f.email_field :email, :placeholder => 'Email', :value => '' %>
-  </div>
-  <div class="controls">  	
-    <%= f.text_field :Cpf, :placeholder => 'CPF', :value => '' %>
-  </div>
- <div class="controls">  
-    <%= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
-  </div>
-  <div class="field">
-	   <%= f.file_field :image %>
-  </div>
-  <div class="controls">
-    <%= f.password_field :password, :placeholder => 'Senha' %>
-  </div>
-  <div class="controls">
-    <%= f.password_field :password_confirmation, :placeholder => 'Repita sua senha'%>  
- </div>
- <div class="controls">
-     <%= collection_select  :team, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
- </div>
-  <div><%= f.submit "Cadastrar", :class => 'btn btn-warning'%></div>
+<div class="bolaodubah-header-bar">
+    <div class="header content">
+        <%= image_tag "logo.gif", :class => 'logo' %>
+    </div>
 </div>
-<%= render "devise/shared/links" %>
-<% end %>
-<div class="article_seperator"></div>
-<br/>
-<p class="text-info">@Bolão online</p>
+<br />
+<div class="container-fluid">
+    <div class="row">           
+        <div class="span12 offset2">
+            <div class="hero-unit">
+                <h2>Escreva seus dados aí, Jiow</h2>
+                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                  <% if resource.errors.any?%>
+		                  <div class="alert">
+			                  <button type="button" class="close" data-dismiss="alert">×</button>
+			                  <strong>Foram encontrados alguns erros:</strong><br/>
+			                  <ul>
+			                  <% resource.errors.each do |field, message|%>
+				                    <li><%= "#{field.capitalize} #{message}" %></li>
+			                   <% end %>
+			                  </ul>
+		                  </div> 
+                  <% end %>
+                  <div class="control-group">
+                    <div class="controls">  	
+                      <%= f.text_field :name, :placeholder => 'Nome', :value => '' %>
+                    </div>
+                    <div class="controls">  	
+                      <%= f.email_field :email, :placeholder => 'Email', :value => '' %>
+                    </div>
+                    <div class="controls">  	
+                      <%= f.text_field :Cpf, :placeholder => 'CPF', :value => '' %>
+                    </div>
+                   <div class="controls">  
+                      <%= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
+                    </div>
+                    <div class="field">
+	                     <%= f.file_field :image %>
+                    </div>
+                    <div class="controls">
+                      <%= f.password_field :password, :placeholder => 'Senha' %>
+                    </div>
+                    <div class="controls">
+                      <%= f.password_field :password_confirmation, :placeholder => 'Repita sua senha'%>  
+                   </div>
+                   <div class="controls">
+                       <%= collection_select  :team, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
+                   </div>
+                    <div><%= f.submit "Cadastrar", :class => 'btn btn-primary btn-large'%></div>
+                  </div>
+                <% end %>                
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <center>
+        <p>&copy; STARTAR Tecnologia 2012</p>
+        </center>
+    </footer>
 </div>
-<script type="text/javascript">
-//$("user_email").val("Marcelin")
-//document.write("<p>Hello from javascript!</p>")
-</script>
+<%= javascript_include_tag "bootstrap" %>
+

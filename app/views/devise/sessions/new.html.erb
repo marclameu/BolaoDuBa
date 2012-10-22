@@ -1,43 +1,66 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => 'form-horizontal') do |f| %>
-<% flash.each do |name, msg| %>
-  <% if msg.class == Array %>
-    <% msg.each do|message| %>
-      <div class="alert">
-	  <button type="button" class="close" data-dismiss="alert">×</button>
-	  <strong>Erro!</strong> <%= message %>
-	  </div>      
-    <% end %>
-  <%else%>
-	  <div class="alert">
-	  <button type="button" class="close" data-dismiss="alert">×</button>
-	  <strong>Erro!</strong> <%= msg %>
-	  </div>
-  <% end %>
-<% end %>
-<div class="div-central">
-<div class="control-group">
-  <div class="controls">  	
-    <%= f.email_field :email, :placeholder => 'Email' %>
-  </div>
-  <div class="controls">
-    <%= f.password_field :password, :placeholder => 'Senha' %>
-  </div>
-  <div>
-  <div class="controls">	
-     <%= f.submit "Efetuar Login", :class => 'btn btn-warning' %>
-     <%= link_to "Cadastre-se", new_user_registration_path, :class => 'btn btn-warning' %>
-  </div>
-  </div>
-</div>
-<br/>
-<div class="article_seperator"></div>
-<br/>
-<p class="text-info">@BolãoDuBah</p>
-</div>
-<% end %>
+    <div class="bolaodubah-header-bar">
+        <div class="header content">            
+           <%= image_tag "logo.gif", :class => 'logo' %>	  
+        </div>
+    </div>
+    <br />    
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="hero-unit" style="height: 280px;">
+                    <h1>
+                        Fala Jiow, eu sou Bah!</h1>
+                    <p>
+                        Seguinte, sabe o que saci foi fazer no Tietê? Ele foi jogar o bolão do Bah num pé
+                        e voltou no outro, como ele é um saci acabou viciado nesse incrivel jogo. Clique
+                        no botão abaixo e participa-lá, depois eu te explico as regras.</p>
+                    <p>
+                        <%= link_to "Cadastre-se ", new_user_registration_path, :class => 'btn btn-primary btn-large' %>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="hero-unit" style="height: 280px;">
+                    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => 'form-horizontal') do |f| %>
+                      <% flash.each do |name, msg| %>
+                        <% if msg.class == Array %>
+                          <% msg.each do|message| %>
+                          <div class="alert">
+	                          <button type="button" class="close" data-dismiss="alert">×</button>
+	                          <strong>Erro!</strong> <%= message %>
+	                        </div>      
+                          <% end %>
+                        <%else%>
+	                        <div class="alert">
+	                        <button type="button" class="close" data-dismiss="alert">×</button>
+	                        <strong>Erro!</strong> <%= msg %>
+	                        </div>
+                        <% end %>
+                      <% end %>
+                      <h2>
+                          Faz login aí Jiow</h2>
+                      <p>
+                          <label for="email">Email :</label>
+                          <div class="input">
+                              <%= f.email_field :email, :placeholder => 'Email' %>
+                          </div>
+                      </p>
+                      <p>
+                          <label for="pwd">Password: </label>
+                          <%= f.password_field :password, :placeholder => 'Senha' %>
+                      </p>
+                      <p>
+                          <input type='submit' value='Efetuar login' id='signup' name='signup' class="btn btn-primary btn-large" />
+                      </p>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <center>
+            <p>&copy; STARTAR Tecnologia 2012</p>
+            </center>
+        </footer>
+    </div>   
+    <%= javascript_include_tag "bootstrap" %> 
 
-<script type="text/javascript">
-  $function(){
-    	
-  }
-</script>
