@@ -21,12 +21,13 @@
 <br/>
 <div>
 </div>
+<br>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">	
 	  <ul class="nav nav-pills nav-stacked">
 		    <li><%= link_to (image_tag current_user.image.url(:thumb), :alt => current_user.name), current_user %></li>
-			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", users_path %></li>
 		    <li class="<%= 'active' if current_page?(matches_path) %>"><%= link_to "Partidas da rodada", matches_path %></li>
 		    <li class="<%= 'active' if current_page?(teams_path ) %>"><%= link_to "Times", teams_path %></li>
 		    <li class="<%= 'active' if current_page?(gambles_path ) %>"><%= link_to "Apostadores da rodada", gambles_path %></li>

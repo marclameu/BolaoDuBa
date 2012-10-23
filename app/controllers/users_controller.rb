@@ -1,7 +1,7 @@
 #comentarios Flavio MERGE de arquivos
 #comentarios Flavio
 class UsersController < ApplicationController
-  
+  skip_before_filter :authenticate_user!, :only =>['show']
   def admin
   end
   # GET /users
@@ -32,10 +32,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    #@user = User.find(params[:id])
+    if user_signed_in?
+      @user = current_user
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to new_user_session_path
     end
   end
 
