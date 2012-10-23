@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'pg', '~>0.13.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,6 +20,11 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+#group :production do
+#  gem 'therubyracer', '~> 0.9.3.beta1'
+#end
+
 
 gem 'devise'
 gem 'jquery-rails'
