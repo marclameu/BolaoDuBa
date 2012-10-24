@@ -13,8 +13,6 @@ class UsersController < ApplicationController
       team_user_id = @user.teams.first.id
       @match =  Match.user_matches(team_user_id)
       @match = (@match == nil)? nil : @match.first
-    #else
-      #@match = Match.first
     end
     unless @match == nil
       @gambles = Gamble.find_all_user_gambles(@user)

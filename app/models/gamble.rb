@@ -26,11 +26,7 @@ class Gamble < ActiveRecord::Base
   end
     
   def self.find_all_user_gambles(user,page = nil)
-    #if page == nil
-     # @gambles = Gamble.where("user_id = ?",[user.id])
-    #else
-      @gambles = Gamble.where("user_id = ?",[user.id]).paginate(:page => page, :per_page => 4)
-    #end
+    Gamble.where("user_id = ?", [21]).joins(:match).where("date_match >= ?",[ApplicationHelper.get_utc_time])
     @gambles
   end
   #belongs_to :team1, :class_name => "Team", :foreign_key => 'team_1_id'
