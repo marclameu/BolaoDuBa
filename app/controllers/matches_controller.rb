@@ -13,7 +13,7 @@ class MatchesController < ApplicationController
     #@matches = Match.all
     #@matches = Match.matches_after_date(ApplicationHelper.get_utc_time, params[:page])
     @matches = Match.last_round_matches(params[:page])
-    @num_round = (@matches == nil)? 0 : @matches.first.round.num_round
+    @num_round = (@matches.present?)? @matches.first.round.num_round : nil
     @teams = Team.all
 
     respond_to do |format|

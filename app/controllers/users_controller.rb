@@ -1,32 +1,22 @@
-#comentarios Flavio MERGE de arquivos
-#comentarios Flavio
 class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, :only =>['show']
   def admin
   end
   # GET /users
   # GET /users.json
+  #Por enquanto, só será considerado o primeiro time escolhido pelo usuário
   def index
-    #@user = User.all(:joins => :teams)
-    @user = User.find(current_user.id)
-    if @user.teams.present?
-      team_user_id = @user.teams.first.id
-      #@match =  Match.user_matches(team_user_id)
+    if current_user.teams.present?
+      team_user_id = current_user.teams.first.id
       @match = Match.user_matches4_last_round(team_user_id)
-      #@match = (@match == nil)? nil : @match.first
     end
     unless @match == nil
-      #@gambles = Gamble.find_all_user_gambles(@user)
       @match = @match.first
-      @gamble = Gamble.find_user_gamble4_last_round(@user.id)
+      @gamble = Gamble.find_user_gamble4_last_round(current_user.id)
       @gamble = (@gamble.present?)? @gamble.first : Gamble.new
-      #@team = @user.teams.first
-  	  @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
-  	  #@gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : Gamble.new
     end
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @user }
     end
   end
 
@@ -65,8 +55,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    #@team = Team.find(params[:team_id])
-	  #@user.teams << @team
+    #o usuário está sendo criado no devise registration.
 	
     respond_to do |format|
       if @user.save
