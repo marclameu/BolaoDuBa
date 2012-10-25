@@ -4,7 +4,7 @@
     <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Ainda não há partidas futuras relacionada ao seu time!</h3>
 </p>
 <% else %>
-	<% if !@gamble4_current_match.present? and @gamble.present? %>
+	<% if (@gamble.id == nil) %>
 	 <p> 
 		<h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Faça sua próxima aposta</h3>
 	</p>

@@ -1,7 +1,7 @@
 <%= form_for(@match) do |f| %>
   <% if @match.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+      <h2><%= pluralize(@match.errors.count, "error") %> encontrados:</h2>
 
       <ul>
       <% @match.errors.full_messages.each do |msg| %>
@@ -12,26 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :team_1 %><br />
+    <%= f.label :Time_1 %><br />
     <%= collection_select  :team1, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
   </div>
   <div class="field">
-    <%= f.label :team_2 %><br />
+    <%= f.label :Time_2 %><br />
     <%= collection_select  :team2, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
   </div>
   <div class="field">
-    <%= f.label :date_match, "Data Partida" %><br />
+    <%= f.label :date_match, "Data da Partida" %><br />
     <%= f.date_select :date_match, :order => [:day, :month, :year], :placeholder => 'Data partida', :value => '' %>	
   </div>
   <div class="field">
-	<% if !@round == nil %>
-    <%= f.label :round %><br />
-      <%= f.select :round, @round, :prompt => "Select.." %>
-    <% else %>
-      Cadastre uma nova rodada
-    <% end%>
+	<% if @championships.present? %>
+      <div class="controls">
+	     <%= f.label :campeonato %>
+      </div>  
+     <div class="controls" >
+	 	<%= select_tag "championship[championship_id]", options_from_collection_for_select(@championships,"id","desc"), 
+	       :onchange => "$.post('#{round_select_path}', {'_method':'get', 'championship[id]':this.value} );" %> 
+	</div>  
+      <% else %>
+        Cadastre um novo campeonato
+      <% end%>
+  </div>
+  <div id="select_round_div">
+  	<%= render 'select_round', :locals=>{:current_round => @current_round} %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Criar partida', :class => "btn" %>
   </div>
 <% end %>

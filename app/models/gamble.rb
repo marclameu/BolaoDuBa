@@ -13,7 +13,7 @@ class Gamble < ActiveRecord::Base
   def self.create_gamble4_user(gamble,user)
     @gamble = gamble
     @gamble.user = user   
-    @gambles =  find_all_user_gambles(user)
+    @gambles =  find_all_user_gambles_except_last_round(user.id)
     unless(@gambles == nil)
       @gambles.each do |g|
         g.active = false
@@ -25,9 +25,11 @@ class Gamble < ActiveRecord::Base
     #@gamble.save
   end
     
-  def self.find_all_user_gambles(user,page = nil)
-    Gamble.where("user_id = ?", [21]).joins(:match).where("date_match >= ?",[ApplicationHelper.get_utc_time])
-    @gambles
+  def self.find_all_user_gambles_except_last_round(user_id)
+    @gambles = joins(:match => :round).where("user_id = #{user_id} and num_round <> #{Round.maximum(:num_round)}")
+  end
+  def self.find_user_gamble4_last_round(user_id)
+    @gambles = joins(:match => :round).where("user_id = #{user_id} and num_round = #{Round.maximum(:num_round)}")
   end
   #belongs_to :team1, :class_name => "Team", :foreign_key => 'team_1_id'
   #belongs_to :team2, :class_name => "Team", :foreign_key => 'team_2_id'

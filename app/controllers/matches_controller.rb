@@ -1,9 +1,19 @@
 class MatchesController < ApplicationController
+  def update_round_select
+    #puts "Olha o ID - " + params[:championship][:id].to_s
+    #@round = Round.find_by_championship_id(params[:championship][:id].to_s)
+    @current_round = Round.current_round(params[:championship][:id].to_s)
+    respond_to do |format|
+      format.js
+    end
+  end
   # GET /matches
   # GET /matches.json
   def index
     #@matches = Match.all
-    @matches = Match.matches_after_date(ApplicationHelper.get_utc_time, params[:page])
+    #@matches = Match.matches_after_date(ApplicationHelper.get_utc_time, params[:page])
+    @matches = Match.last_round_matches(params[:page])
+    @num_round = (@matches == nil)? 0 : @matches.first.round.num_round
     @teams = Team.all
 
     respond_to do |format|
@@ -28,7 +38,8 @@ class MatchesController < ApplicationController
   def new
     @match = Match.new
     @teams = Team.all
-    @round = Round.last
+    @championships = Championship.all
+    @current_round = (@championships == nil)? nil: Round.current_round(@championships.first.id)    
     
     respond_to do |format|
       format.html # new.html.erb
@@ -44,11 +55,13 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.json
   def create
+    #puts "o round " + params[:round_id]
     @match = Match.new(params[:match])
     @team = Team.find(params[:team1][:id])
     @match.team1 = @team    
     @team = Team.find(params[:team2][:id])
     @match.team2 = @team
+    @match.round = Round.find(params[:round_id])
 
     respond_to do |format|
       if @match.save

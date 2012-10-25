@@ -15,6 +15,8 @@ BolaoOnline::Application.routes.draw do
   
   root :to => 'users#show'
   
+  match 'round_select' => 'matches#update_round_select'
+  
   
 
 
