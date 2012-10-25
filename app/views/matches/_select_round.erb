@@ -1,0 +1,9 @@
+<div class="field">
+	<% if @current_round != nil %>
+      <h3><%= "Rodada atual: " + @current_round.num_round.to_s %></h3>
+      <%= hidden_field_tag "round_id", @current_round.id %>
+    <% else %>
+      <h3>Cadastre uma nova rodada</h3>
+	  <%= hidden_field_tag "round_id", "" %>      
+    <% end%>
+</div>
