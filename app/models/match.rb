@@ -27,8 +27,8 @@ class Match < ActiveRecord::Base
   def self.update_all_matches(matches)
     matches.each do |m|
       match4_update = Match.find(m[0].to_i)      
-      match4_update.goals_team1 = m[1]["goals_team1"].to_i
-      match4_update.goals_team2 = m[1]["goals_team2"].to_i
+      match4_update.goals_team1 = (m[1]["goals_team1"].to_s.eql? "")? nil : m[1]["goals_team1"].to_i
+      match4_update.goals_team2 = (m[1]["goals_team2"].to_s.eql? "")? nil : m[1]["goals_team2"].to_i
       match4_update.save
     end
   end
