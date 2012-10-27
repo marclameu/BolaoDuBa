@@ -31,6 +31,7 @@
 		    <li class="<%= 'active' if current_page?(matches_path) %>"><%= link_to "Partidas da rodada", matches_path %></li>
 		    <li class="<%= 'active' if current_page?(teams_path ) %>"><%= link_to "Times", teams_path %></li>
 		    <li class="<%= 'active' if current_page?(gambles_path ) %>"><%= link_to "Apostadores da rodada", gambles_path %></li>
+		    <li class="<%= 'active' if current_page?(round4_finish_path ) %>"><%= link_to "Encerrar partidas", round4_finish_path %></li>
 			<li><%= link_to 'Logoff', destroy_user_session_path, :confirm => 'Deseja efetur logoff?'%></li>									  
 		</ul>
     </div>

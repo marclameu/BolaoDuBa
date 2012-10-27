@@ -1,0 +1,24 @@
+<br/>
+<br/>
+<%= form_for :round, :url=> update_matches_path do |f| %>
+	<h2 style="font-size:30px; color:#6495ED;margin-left:30%;"><%= @round.num_round %>º Rodada</h2>
+	<% for match in @round.matches %>
+	  <%= fields_for "round[matches_attributes][]", match do |match_form| %>
+		<div class="row-fluid show-grid">
+			<div class="span1"><%= match_form.text_field :goals_team1, :class => "goals_input",:style=>"height:40px;font-size:20px;text-align:center;"%></div>			
+			<div class="span1"><%= link_to (image_tag match.team1.image.url(:thumb)), match.team1, :class =>'basic-link' %></div>			
+			<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
+			<div class="span1"><%= image_tag match.team2.image.url(:thumb), :alt => match.team2.name %></div>
+			<div class="span1"><%= match_form.text_field :goals_team2, :class => "goals_input", :style=>"height:40px;font-size:20px;text-align:center;"%></div>
+		</div>
+		<br/>
+	  <% end %>
+	<% end %>
+	<%= submit_tag "Atualizar partidas", :class=>"btn btn-danger" %>
+<% end %>
+<% if flash[:notice]  %>
+<div class="alert">
+   <button type="button" class="close" data-dismiss="alert">×</button>
+   <strong><%= flash[:notice] %></strong><br/>
+</div>
+<% end %>

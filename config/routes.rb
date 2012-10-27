@@ -17,6 +17,10 @@ BolaoOnline::Application.routes.draw do
   
   match 'round_select' => 'matches#update_round_select'
   
+  match 'round4_finish' => 'rounds#round4_finish'
+  
+  match 'update_matches' => 'rounds#update_matches'
+  
   
 
 

@@ -80,4 +80,22 @@ class RoundsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def round4_finish
+    @matches = Match.last_round_matches
+    @round = Match.first.round
+  end
+  
+  def update_matches
+    Match.update_all_matches(params[:round][:matches_attributes])
+    redirect_to round4_finish_path
+    flash[:notice] = "Partidas atualizadas com sucesso!"
+      #puts "ID = " + m[0].to_s
+      #puts "Gols time 1 = " + m[1]["goals_team1"].to_s
+      #puts "Gols time 2 = " + m[1]["goals_team2"].to_s      
+    #end
+    #match = Match.find()
+    #Match.update_all(params[:round][:matches_attributes])
+  end
+  
 end

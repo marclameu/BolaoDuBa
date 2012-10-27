@@ -1,6 +1,6 @@
 class Match < ActiveRecord::Base
   belongs_to :round
-  attr_accessible :date_match, :goals_team_1, :goals_team_2, :team1, :team2
+  attr_accessible :date_match, :goals_team1, :goals_team2, :team1, :team2
   belongs_to :team1, :class_name => Team, :foreign_key => 'team_1_id'
   belongs_to :team2, :class_name => "Team", :foreign_key => 'team_2_id'
   has_many :gambles
@@ -23,4 +23,13 @@ class Match < ActiveRecord::Base
     where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and date_match >= '#{ApplicationHelper.get_utc_time}'")
     .order("date_match DESC")
   end  
+  
+  def self.update_all_matches(matches)
+    matches.each do |m|
+      match4_update = Match.find(m[0].to_i)      
+      match4_update.goals_team1 = m[1]["goals_team1"].to_i
+      match4_update.goals_team2 = m[1]["goals_team2"].to_i
+      match4_update.save
+    end
+  end
 end
