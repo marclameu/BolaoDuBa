@@ -23,7 +23,7 @@ class Match < ActiveRecord::Base
     where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and date_match >= '#{ApplicationHelper.get_utc_time}'")
     .order("date_match DESC")
   end  
-  
+  #Atualiza todas as apostas (Matches) vindas da tela ""round4_finish".
   def self.update_all_matches(matches)
     matches.each do |m|
       match4_update = Match.find(m[0].to_i)      
