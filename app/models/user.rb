@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :born_date, :email, :name, :image, :Cpf
   has_many :gambles
   has_and_belongs_to_many :teams
+  has_many :participations
+  has_many :championships, :through => :participations
   accepts_nested_attributes_for :teams
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "300x180>"}
 end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  champion_id: 1
+  user_id: 1
+  user_points: 1
+
+two:
+  champion_id: 1
+  user_id: 1
+  user_points: 1
