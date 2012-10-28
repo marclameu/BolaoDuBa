@@ -2,7 +2,7 @@
 <br/>
 <% unless @round == nil %>
 	<%= form_for :round, :url=> update_matches_path do |f| %>
-		<h2 style="font-size:30px; color:#6495ED;margin-left:30%;"><%= @round.num_round %>º Rodada</h2>
+		<h2 style="font-size:30px; color:#6495ED;margin-left:20%;"><%= @round.num_round %>º Rodada do <%= @round.championship.desc%></h2>
 		<% for match in @round.matches %>
 		  <%= fields_for "round[matches_attributes][]", match do |match_form| %>
 			<div class="row-fluid show-grid">

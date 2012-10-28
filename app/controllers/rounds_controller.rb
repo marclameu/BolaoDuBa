@@ -88,7 +88,7 @@ class RoundsController < ApplicationController
   
   def update_matches
     Match.update_all_matches(params[:round][:matches_attributes])
-    redirect_to round4_finish_path
+    redirect_to encerrar_partidas_path
     flash[:notice] = "Partidas atualizadas com sucesso!"
       #puts "ID = " + m[0].to_s
       #puts "Gols time 1 = " + m[1]["goals_team1"].to_s

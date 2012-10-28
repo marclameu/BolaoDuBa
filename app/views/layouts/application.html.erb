@@ -28,10 +28,10 @@
 	  <ul class="nav nav-pills nav-stacked">
 		    <li><%= link_to (image_tag current_user.image.url(:thumb), :alt => current_user.name), current_user %></li>
 			<li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "Home", users_path %></li>
-		    <li class="<%= 'active' if current_page?(matches_path) %>"><%= link_to "Partidas da rodada", matches_path %></li>
+		    <li class="<%= 'active' if current_page?(partidas_da_rodada_path) %>"><%= link_to "Partidas da rodada", partidas_da_rodada_path %></li>
 		    <li class="<%= 'active' if current_page?(teams_path ) %>"><%= link_to "Times", teams_path %></li>
 		    <li class="<%= 'active' if current_page?(gambles_path ) %>"><%= link_to "Apostadores da rodada", gambles_path %></li>
-		    <li class="<%= 'active' if current_page?(round4_finish_path ) %>"><%= link_to "Encerrar partidas", round4_finish_path %></li>
+		    <li class="<%= 'active' if current_page?(encerrar_partidas_path ) %>"><%= link_to "Encerrar partidas", encerrar_partidas_path %></li>
 			<li><%= link_to 'Logoff', destroy_user_session_path, :confirm => 'Deseja efetur logoff?'%></li>									  
 		</ul>
     </div>
