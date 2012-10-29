@@ -9,7 +9,7 @@
         <div class="span12 offset2">
             <div class="hero-unit">
                 <h2>Escreva seus dados aí, Jiow</h2>
-                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                <%= form_for(resource,:html => { :class => "form-horizontal"}, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
                   <% if resource.errors.any?%>
 		                  <div class="alert">
 			                  <button type="button" class="close" data-dismiss="alert">×</button>
@@ -20,33 +20,63 @@
 			                   <% end %>
 			                  </ul>
 		                  </div> 
-                  <% end %>
+                  <% end %>                
                   <div class="control-group">
-                    <div class="controls">  	
+                    <label class="control-label" for="inputEmail">Nome: </label>
+                    <div class="controls">
                       <%= f.text_field :name, :placeholder => 'Nome', :value => '' %>
                     </div>
-                    <div class="controls">  	
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputPassword">Email: </label>
+                    <div class="controls">
                       <%= f.email_field :email, :placeholder => 'Email', :value => '' %>
                     </div>
-                    <div class="controls">  	
-                      <%= f.text_field :Cpf, :placeholder => 'CPF', :value => '' %>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="inputEmail">Cpf: </label>
+                    <div class="controls">
+                       <%= f.text_field :Cpf, :placeholder => 'CPF', :value => '' %>
                     </div>
-                   <div class="controls">  
-                      <%= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputPassword">Data Nascimento:</label>
+                    <div class="controls">                
+                      <%#= f.date_select :born_date, :order => [:day, :month, :year], :prompt => { :day => 'Dia', :month => 'Mês', :year => 'Ano' } %>	
+                      <%= f.text_field :born_date, :value => date_mdY(resource.born_date) %>
                     </div>
-                    <div class="field">
-	                     <%= f.file_field :image %>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputEmail">Sua Foto:</label>
+                    <div class="controls">
+                      <%= f.file_field :image %> 
                     </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputPassword">Senha: </label>
                     <div class="controls">
                       <%= f.password_field :password, :placeholder => 'Senha' %>
                     </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="inputEmail">Repita sua senha:</label>
                     <div class="controls">
-                      <%= f.password_field :password_confirmation, :placeholder => 'Repita sua senha'%>  
-                   </div>
-                   <div class="controls">
-                       <%= collection_select  :team, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>
-                   </div>
-                    <div><%= f.submit "Cadastrar", :class => 'btn btn-primary btn-large'%></div>
+                      <%= f.password_field :password_confirmation, :placeholder => 'Repita sua senha'%> 
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputPassword">Time do coração: </label>
+                    <div class="controls">
+                      <%#= collection_select :team, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>                      
+                      <%= f.collection_select :teams, Team.all, :id , :name, :prompt => "Escolha o time", :value => getTeam(resource.teams) %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="controls">
+                      <%= f.submit "Cadastrar", :class => 'btn btn-primary btn-large'%>
+                    </div>
                   </div>
                 <% end %>                
             </div>

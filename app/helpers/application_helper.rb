@@ -7,5 +7,13 @@ module ApplicationHelper
   def self.get_utc_time
      now = Time.now
      Time.utc(now.year, now.month, now.day, now.hour, now.min, now.sec)
-   end
+   end  
+  #Formata a data, para os campos text_field
+  def date_mdY(date)
+    if date.nil?
+      ""
+    else
+      date.strftime("%d/%m/%Y")
+    end
+  end
 end

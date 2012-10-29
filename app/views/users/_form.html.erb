@@ -21,7 +21,8 @@
   </div>
   <div class="field">
     <%= f.label :born_date %><br />
-    <%= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
+    <%#= f.date_select :born_date, :order => [:day, :month, :year], :placeholder => 'Data Nascimento', :value => '' %>	
+    <%= f.text_field :born_date, :value => date_mdY(@user.born_date) %>
   </div>
   <div class="field">
 	   <%= f.file_field :image %>
