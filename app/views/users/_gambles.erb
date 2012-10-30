@@ -19,7 +19,14 @@
 			<div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
 		</div>
 		<%end%>
+		<%= hidden_field_tag "limit_date", (@match.date_match - 2.hours).to_formatted_s(:long)%>
+		<br/>
+		<h3 style="float:left;">Tempo restante:</h3> 
+		<div id = "contador" class="contador"></div>
+		<br/><br/><br/>
+		<p>
 		<div class="article_seperator sep-teams"></div>
+		</p>
 	<% else %>
 			 <p> 
 			    <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Sua aposta na rodada</h3>

@@ -55,4 +55,9 @@ a:link, a:visited, a:active, a:hover
 	margin:17px 0 0 0;	
   
 }
+.contador{
+	float:left;
+	margin:20px 0 0 0;
+    width:600px;
+}
 
