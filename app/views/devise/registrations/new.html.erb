@@ -69,8 +69,8 @@
                   <div class="control-group">
                     <label class="control-label" for="inputPassword">Time do coração: </label>
                     <div class="controls">
-                      <%#= collection_select :team, :id, @teams, :id, :name, :prompt => true , :placeholder =>'Escolha seu time' %>                      
-                      <%= f.collection_select :teams, Team.all, :id , :name, :prompt => "Escolha o time", :value => getTeam(resource.teams) %>
+                      <%= collection_select :team, :id, @teams, :id, :name, :prompt => true , :prompt =>'Escolha seu time' %>                      
+                      <%#= f.collection_select :teams, @teams, :id , :name, :prompt => "Escolha o time", :value => getTeam(resource.teams) %>
                     </div>
                   </div>
                   <div class="control-group">
