@@ -10,7 +10,16 @@
             <div class="hero-unit">
                 <h2>Escreva seus dados aí, Jiow</h2>
                 <%= form_for(resource,:html => { :class => "form-horizontal"}, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-                  <% if resource.errors.any?%>
+                  <% if flash[:error] %>
+   	                  <div class="alert">
+		                  <button type="button" class="close" data-dismiss="alert">×</button>
+		                  <strong>Um erro foi encontrado</strong><br/>
+		                  <ul>
+			               <li><%= flash[:error] %></li>
+		                  </ul>
+	                  </div>
+				  <% end %>
+					<% if resource.errors.any?%>
 		                  <div class="alert">
 			                  <button type="button" class="close" data-dismiss="alert">×</button>
 			                  <strong>Foram encontrados alguns erros:</strong><br/>
@@ -69,7 +78,7 @@
                   <div class="control-group">
                     <label class="control-label" for="inputPassword">Time do coração: </label>
                     <div class="controls">
-                      <%= collection_select :team, :id, @teams, :id, :name, :prompt => true , :prompt =>'Escolha seu time' %>                      
+                      <%= collection_select :team, :id, Team.all, :id, :name, :prompt => true , :prompt =>'Escolha seu time' %>                      
                       <%#= f.collection_select :teams, @teams, :id , :name, :prompt => "Escolha o time", :value => getTeam(resource.teams) %>
                     </div>
                   </div>

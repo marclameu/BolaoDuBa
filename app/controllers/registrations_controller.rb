@@ -1,27 +1,30 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
     @teams = Team.all
-    super
+    resource = build_resource({})
+    respond_with resource
   end
 
   def create
-    super
-    #@user = User.new(params[:user])
-    #team = Team.find(params[:team][:id])
-    #puts "Classe = #{team.class}"
-	  #@user.teams << (team == nil)? nil : team
-	  #@user.teams << Team.find(params[:team][:id])
-	  #current_user.teams << Team.find(params[:team][:id])
-    respond_to do |format|
-      if current_user.save
-        #format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.html { redirect_to users_path, notice: 'User was successfully created.' }
-        #redirect_to root_path
-      else
-        format.html { render action: "new" }
-        format.json { render json: current_user.errors, status: :unprocessable_entity }
-      end
-    end    
+    #resource = build_resource({})
+    build_resource
+    if params[:team][:id] == ""
+      resource.errors.add("", "Escolha seu time")
+      respond_with resource 
+    else
+      super   
+      current_user.teams << Team.find(params[:team][:id]) if current_user.present?
+    end
+    
+    #if (params[:team][:id] == nil) or (params[:team][:id] == "")
+    #  flash[:erro] = "Selecione seu time" 
+    #  redirect_to sign_up_path
+    #else
+    #  super
+    #  current_user.teams << Team.find(params[:teams][:id]) if current_user.present?
+    #end
+    #resource.errors.add(:teams, "Selecione seu time!") if params[:teams][:id] == nil
+	  #current_user.teams << Team.find(params[:teams][:id]) if current_user.present?
   end
 
   def update

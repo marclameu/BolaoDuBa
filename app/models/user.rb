@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :born_date, :email, :name, :image, :Cpf
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :born_date, :email, :name, :image, :Cpf, :teams
  
   #campos requeridos
   validates_presence_of :name, :Cpf
-  #validates_associated :teams
+  validates_associated :teams
   
   #associações
   has_many :gambles
