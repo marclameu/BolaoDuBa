@@ -56,8 +56,13 @@ a:link, a:visited, a:active, a:hover
   
 }
 .contador{
+	font-family:verdana;
+	font-size:20px;
 	float:left;
-	margin:20px 0 0 0;
-    width:600px;
+	margin:0 0 0 0;
+    width:250px;
+}
+.fim-aposta{
+	margin:0 0 0 300px;
 }
 

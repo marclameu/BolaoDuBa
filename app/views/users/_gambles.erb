@@ -4,6 +4,7 @@
     <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Ainda não há partidas futuras relacionada ao seu time!</h3>
 </p>
 <% else %>
+    <%= hidden_field_tag "limit_date", (@match.date_match - 2.hours).to_formatted_s(:long)%>
 	<% if ((@gamble == nil) or (@gamble.id == nil))%>
 	 <p> 
 		<h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Faça sua próxima aposta</h3>
@@ -19,14 +20,6 @@
 			<div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
 		</div>
 		<%end%>
-		<%= hidden_field_tag "limit_date", (@match.date_match - 2.hours).to_formatted_s(:long)%>
-		<br/>
-		<h3 style="float:left;">Tempo restante:</h3> 
-		<div id = "contador" class="contador"></div>
-		<br/><br/><br/>
-		<p>
-		<div class="article_seperator sep-teams"></div>
-		</p>
 	<% else %>
 			 <p> 
 			    <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Sua aposta na rodada</h3>
@@ -42,7 +35,16 @@
 			</div>
     <% end %>
 	<br/>
-	<% if flash[:notice] %>
+	<br/>
+	<div class = "fim-aposta">
+		<h3 style="float:left;margin:0 0 0 0">Esta aposta finaliza em: </h3> 
+		<div id = "contador" class="contador"></div>
+	</div>
+	<br/><br/><br/>
+	<p>
+	<div class="article_seperator sep-teams"></div>
+	</p>
+	<% if flash[:notice] and !(flash[:notice].empty?) %>
 		<div class="alert">
 		  <button type="button" class="close" data-dismiss="alert">×</button>
 		  <strong><%= flash[:notice]%></strong>

@@ -26,9 +26,5 @@ $(document).ready(function() {
   });
 });
 */
-//var newYear = new Date(); 
-//newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1);
-//alert(newYear);
 var date = new Date(jQuery('#limit_date').val());
-alert(date);
-$('#contador').countdown({until: date, compact: true, description: ''}); 
+$('#contador').countdown({until: date, description: ''}); 

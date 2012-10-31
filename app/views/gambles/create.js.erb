@@ -1,1 +1,3 @@
 $("#gamble_div").html("<%= escape_javascript(render(:partial => 'users/gambles')) %>");
+var date = new Date(jQuery('#limit_date').val());
+$('#contador').countdown({until: date, description: ''});
