@@ -41,27 +41,24 @@ class GamblesController < ApplicationController
   # POST /gambles
   # POST /gambles.json
   def create
-    @gamble = Gamble.new(params[:gamble])
-	  @match = Match.find(params[:match_id])
-    @gamble.match = @match
-    @gamble = Gamble.create_gamble4_user(@gamble, current_user)
-
-    respond_to do |format|
-      if @gamble.save
-        #format.html { redirect_to @gamble, notice: 'Gamble was successfully created.' }
-        #format.json { render json: @gamble, status: :created, location: @gamble }
-		    @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
-		    @gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : nil
-    #        @gambles = Gamble.find_all_user_gambles(current_user, params[:page])
-        flash[:notice] = "A aposta esta feita Giow!"
-        format.js
-      else
-        #format.html { render action: "new" }
-        #format.json { render json: @gamble.errors, status: :unprocessable_entity }
-		    @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
-        format.js
-      end
-    end
+     @match = Match.find(params[:match_id])
+     @gamble = Gamble.new(params[:gamble])
+     @gamble.match = @match
+     @gamble = Gamble.create_gamble4_user(@gamble, current_user)    
+     respond_to do |format|
+       unless ((ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours))
+         if @gamble.save
+           @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+           @gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : nil
+           flash[:notice] = "A aposta esta feita Giow!"
+         else
+             @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+         end
+       else
+          flash[:notice] = "Nao foi possivel realizar sua aposta, tempo limite excedido!"
+       end
+       format.js               
+     end
   end
 
   # PUT /gambles/1
@@ -85,17 +82,22 @@ class GamblesController < ApplicationController
   def destroy
     @gamble = Gamble.find(params[:id])
     @match = @gamble.match
-    if @gamble.destroy
-	    @gamble = Gamble.new
-      @gamble4_current_match = nil
-	
-      respond_to do |format|
-       # format.html { redirect_to gambles_url }
-        #format.json { head :no_content }
-	     format.js 
-      end
+    unless ((ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours))
+      if @gamble.destroy
+  	     @gamble = Gamble.new
+         @gamble4_current_match = nil
+         flash[:notice] = "Sua aposta foi cancelada!"
+       end
+    else
+       flash[:notice] = "Nao foi possivel excluir sua aposta, tempo limite excedido!"
+    end   	
+    respond_to do |format|
+     # format.html { redirect_to gambles_url }
+      #format.json { head :no_content }
+  	 format.js 
+    end
 	end
-  end
+	
   def active_gambles
     @active_gambles = Gamble.active_gambles
   end  

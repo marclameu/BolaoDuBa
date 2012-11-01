@@ -6,50 +6,70 @@
 <% else %>
     <%= hidden_field_tag "limit_date", (@match.date_match - 2.hours).to_formatted_s(:long)%>
 	<% if ((@gamble == nil) or (@gamble.id == nil))%>
-	 <p> 
-		<h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Faça sua próxima aposta</h3>
-	</p>
-		<%= form_for @gamble, :remote => true, :url => {:controller => "gambles", :action => "create", :match_id=> @match.id,} do |f|%>
-		<div class="row-fluid show-grid">
-			<div class="span1"><%= f.text_field :goals_team_1, :class => "goals_input",:style=>"height:40px;font-size:20px;text-align:center;"%></div>
-			<div class="span1"><%= link_to (image_tag @match.team1.image.url(:thumb)), @match.team1, :class =>'basic-link' %></div>
-			<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
-			<div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
-			<div class="span1"><%= f.text_field :goals_team_2, :class => "goals_input", :style=>"height:40px;font-size:20px;text-align:center;"%></div>
-			<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
-			<div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
-		</div>
-		<%end%>
-	<% else %>
-			 <p> 
-			    <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Sua aposta na rodada</h3>
-			</p>
-	   		<div class="row-fluid show-grid">
-				<div class="span1" style="font-size:40px;margin:23px -30px 0 10px"><%= @gamble.goals_team_1%></div>
+		<% if (DateTime.now) >= (@match.date_match - 2.hours) %>
+		   <p> 
+		  	  <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Apostas encerradas para esta rodada</h3>
+		  </p>
+		<% else %>
+		 <p> 
+			<h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Faça sua próxima aposta</h3>
+		</p>
+		<% end %>
+			<%= form_for @gamble, :remote => true, :url => {:controller => "gambles", :action => "create", :match_id=> @match.id,} do |f|%>
+			<div class="row-fluid show-grid">
+				<div class="span1"><%= f.text_field :goals_team_1, :class => "goals_input",:style=>"height:40px;font-size:20px;text-align:center;"%></div>
 				<div class="span1"><%= link_to (image_tag @match.team1.image.url(:thumb)), @match.team1, :class =>'basic-link' %></div>
 				<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
 				<div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
-				<div class="span1" style="font-size:40px;margin:23px 0 0 20px"><%= @gamble.goals_team_2 %></div>
+				<div class="span1"><%= f.text_field :goals_team_2, :class => "goals_input", :style=>"height:40px;font-size:20px;text-align:center;"%></div>
 				<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
-				<div class="span1"><%= button_to 'Cancelar aposta', @gamble, method: :delete,:remote => true,  data: { confirm: 'Deseja cancelar sua aposta?' }, :class=>"btn btn-danger goals_button"  %></div>
+				<% unless (ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours) %>				
+				  <div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
+			    <% else %>
+			     <div class="span1" style="margin:15px 0 0 0"><a href="#" class="btn btn-success disabled goals_button" style="">Encerrada</a></div>
+				<% end %>			   
 			</div>
-    <% end %>
-	<br/>
-	<br/>
-	<div class = "fim-aposta">
-		<h3 style="float:left;margin:0 0 0 0">Esta aposta finaliza em: </h3> 
-		<div id = "contador" class="contador"></div>
-	</div>
-	<br/><br/><br/>
-	<p>
-	<div class="article_seperator sep-teams"></div>
-	</p>
-	<% if flash[:notice] and !(flash[:notice].empty?) %>
-		<div class="alert">
-		  <button type="button" class="close" data-dismiss="alert">×</button>
-		  <strong><%= flash[:notice]%></strong>
-		  <% flash[:notice] = "" %>
+			<%end%>
+		<% else %>
+			<% if (ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours) %>
+			   <p> 
+			  	  <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Apostas encerradas para esta rodada</h3>
+			  </p>
+			<% else %>		
+				 <p> 
+				    <h3 style="font-size:20px; color:#6495ED;margin-left:30%;">Sua aposta na rodada</h3>
+				</p>
+			<% end %>
+		   		<div class="row-fluid show-grid">
+					<div class="span1" style="font-size:40px;margin:23px -30px 0 10px"><%= @gamble.goals_team_1%></div>
+					<div class="span1"><%= link_to (image_tag @match.team1.image.url(:thumb)), @match.team1, :class =>'basic-link' %></div>
+					<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
+					<div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
+					<div class="span1" style="font-size:40px;margin:23px 0 0 20px"><%= @gamble.goals_team_2 %></div>
+					<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
+					<% unless (ApplicationHelper.get_utc_time >= (@match.date_match - 2.hours)) %>				
+					  <div class="span1"><%= button_to 'Cancelar aposta', @gamble, method: :delete,:remote => true,  data: { confirm: 'Deseja cancelar sua aposta?' }, :class=>"btn btn-danger goals_button"  %></div>
+					<% else %>
+				      <div class="span1" style="margin:15px 0 0 0"><a href="#" class="btn btn-success disabled goals_button" style="">Encerrada</a></div>
+				    <% end %>
+				</div>
+	    <% end %>
+		<br/>
+		<br/>
+		<div class = "fim-aposta">
+			<h3 style="float:left;margin:0 0 0 0">Esta aposta finaliza em: </h3> 
+			<div id = "contador" class="contador"></div>
 		</div>
-	<% end %>
-	</div>
+		<br/><br/><br/>
+		<p>
+		<div class="article_seperator sep-teams"></div>
+		</p>
+		<% if flash[:notice] and !(flash[:notice].empty?) %>
+			<div class="alert">
+			  <button type="button" class="close" data-dismiss="alert">×</button>
+			  <strong><%= flash[:notice]%></strong>
+			  <% flash[:notice] = "" %>
+			</div>
+		<% end %>
+		</div>
 <% end %>

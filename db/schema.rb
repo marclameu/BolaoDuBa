@@ -11,12 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028211300) do
+ActiveRecord::Schema.define(:version => 20121031212221) do
+
+  create_table "championship_user", :force => true do |t|
+    t.integer "championship_id"
+    t.integer "user_id"
+    t.integer "user_points"
+  end
 
   create_table "championships", :force => true do |t|
     t.string   "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "gambles", :force => true do |t|
