@@ -34,6 +34,26 @@ class Gamble < ActiveRecord::Base
   def self.find_user_gamble4_last_round(user_id)
     @gambles = joins(:match => :round).where("user_id = #{user_id} and num_round = #{Round.maximum(:num_round)}")
   end
+  
+  def points4_user
+    points = 0
+    #Time vencedor ou empate = 1pto
+    if (((goals_team_1 > goals_team_2) and (match.goals_team1 > match.goals_team2)) or
+       ((goals_team_1 < goals_team_2) and (match.goals_team1 < match.goals_team2)) or
+       ((goals_team_1 == goals_team_2) and (match.goals_team1 == match.goals_team2)))
+      points += 1      
+    end
+    #Número de gols de 1 time = 1 pto
+    if (((goals_team_1 == match.goals_team1) and (goals_team_2 != match.goals_team2)) or
+       ((goals_team_1 != match.goals_team1) and (goals_team_2 == match.goals_team2))) 
+       points += 1
+    end   
+    #Placar total = 2ptos   
+    if ((goals_team_1== match.goals_team1) and (goals_team_2 == match.goals_team2))
+      points += 2
+    end
+    points
+  end  
   #belongs_to :team1, :class_name => "Team", :foreign_key => 'team_1_id'
   #belongs_to :team2, :class_name => "Team", :foreign_key => 'team_2_id'
 end
