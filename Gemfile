@@ -19,7 +19,6 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-ui-rails'
 end
 
 group :production do
@@ -27,6 +26,7 @@ group :production do
   #gem 'pg', '0.13.2'
 end
 
+gem 'jquery-ui-rails'
 
 gem 'devise'
 gem 'jquery-rails'
