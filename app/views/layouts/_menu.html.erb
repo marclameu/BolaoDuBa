@@ -30,7 +30,7 @@
                         <%= link_to "Times", teams_path %>
                       </li>
                       <li>
-                         <%= link_to "Usuarios", users_path %>
+                         <%= link_to "Apostar", apostar_path %>
                       </li>
                       <li>
                         <%= link_to "Apostadores", gambles_path %>
@@ -57,7 +57,9 @@
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <%= link_to(destroy_user_session_path) do %><i class="icon-off icon-black"></i>&nbsp;&nbsp; Log Out<% end %>
+                        <%= link_to(destroy_user_session_path, :confirm => "nbad") do %>
+							<i class="icon-off icon-black"></i>&nbsp;&nbsp; Log Out
+						<% end %>
                       </li>                      
                   </ul>
               </li>

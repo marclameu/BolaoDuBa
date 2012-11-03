@@ -24,6 +24,8 @@ BolaoOnline::Application.routes.draw do
   
   match 'partidas_da_rodada' => 'matches#index'
   
+  match 'apostar' => 'users#index'
+  
   
 
 

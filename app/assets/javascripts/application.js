@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.ui.all
 //= require_tree .
 /*
 $(document).ready(function() {
@@ -28,3 +29,19 @@ $(document).ready(function() {
 */
 var date = new Date(jQuery('#limit_date').val());
 $('#contador').countdown({until: date, description: ''}); 
+
+$(function() {
+    $( "#user_born_date" ).datepicker({
+	    changeMonth: true,
+		dateFormat: 'dd/mm/yy', 
+		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+		dayNamesMin: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'],  
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julio', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'], 
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'], 
+        changeYear: true,
+		yearRange: '1950:2010'
+	});
+    /*$( "#anim" ).change(function() {
+        $( "#user_born_date" ).datepicker( "option", "showAnim", $( this ).val() );
+    });*/
+});

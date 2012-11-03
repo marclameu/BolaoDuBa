@@ -22,7 +22,7 @@
 				<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
 				<div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
 				<div class="span1"><%= f.text_field :goals_team_2, :class => "goals_input", :style=>"height:40px;font-size:20px;text-align:center;"%></div>
-				<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
+				<div class="span4 span-date"><%= standart_date(@match.date_match, "/") %></div>
 				<% unless (ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours) %>				
 				  <div class="span1"><%= f.submit :Apostar, :class => "btn btn-success goals_button"%></div>
 			    <% else %>
@@ -46,7 +46,7 @@
 					<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
 					<div class="span1"><%= image_tag @match.team2.image.url(:thumb), :alt => @match.team2.name %></div>
 					<div class="span1" style="font-size:40px;margin:23px 0 0 20px"><%= @gamble.goals_team_2 %></div>
-					<div class="span3 span-date"><%= standart_date(@match.date_match, "/") %></div>
+					<div class="span4 span-date"><%= standart_date(@match.date_match, "/") %></div>
 					<% unless (ApplicationHelper.get_utc_time >= (@match.date_match - 2.hours)) %>				
 					  <div class="span1"><%= button_to 'Cancelar aposta', @gamble, method: :delete,:remote => true,  data: { confirm: 'Deseja cancelar sua aposta?' }, :class=>"btn btn-danger goals_button"  %></div>
 					<% else %>
