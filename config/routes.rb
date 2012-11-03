@@ -13,7 +13,8 @@ BolaoOnline::Application.routes.draw do
 
   resources :users
   
-  root :to => 'users#show'
+  #root :to => 'users#show'
+  root :to => 'home#index'
   
   match 'round_select' => 'matches#update_round_select'
   

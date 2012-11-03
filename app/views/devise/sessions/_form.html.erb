@@ -1,0 +1,32 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => 'form-horizontal') do |f| %>
+  <% flash.each do |name, msg| %>
+    <% if msg.class == Array %>
+      <% msg.each do|message| %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Erro!</strong> <%= message %>
+      </div>      
+      <% end %>
+    <%else%>
+      <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>Erro!</strong> <%= msg %>
+      </div>
+    <% end %>
+  <% end %>
+  <h2>
+      Faz login aí Jiow</h2>
+  <p>
+      <label for="email">Email :</label>
+      <div class="input">
+          <%= f.email_field :email, :placeholder => 'Email' %>
+      </div>
+  </p>
+  <p>
+      <label for="pwd">Password: </label>
+      <%= f.password_field :password, :placeholder => 'Senha' %>
+  </p>
+  <p>
+      <input type='submit' value='Efetuar login' id='signup' name='signup' class="btn btn-primary btn-large" />
+  </p>
+<%end%>

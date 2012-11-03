@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -12,42 +12,41 @@
   <%= stylesheet_link_tag "jquery.countdown.css"%>
   <% csrf_meta_tags %>
 </head>
-<body>
-<% if user_signed_in? %>
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-		<%= image_tag "logo.gif" %>	  
-		<br/>
-   </div>
-</div>
-<br/>
-<div>
-</div>
-<br/>
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span2">	
-	  <ul class="nav nav-pills nav-stacked">
-		    <li><%= link_to (image_tag current_user.image.url(:thumb), :alt => current_user.name), current_user %></li>
-			<li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "Home", users_path %></li>
-		    <li class="<%= 'active' if current_page?(partidas_da_rodada_path) %>"><%= link_to "Partidas da rodada", partidas_da_rodada_path %></li>
-		    <li class="<%= 'active' if current_page?(teams_path ) %>"><%= link_to "Times", teams_path %></li>
-		    <li class="<%= 'active' if current_page?(gambles_path ) %>"><%= link_to "Apostadores da rodada", gambles_path %></li>
-		    <li class="<%= 'active' if current_page?(encerrar_partidas_path ) %>"><%= link_to "Encerrar partidas", encerrar_partidas_path %></li>
-			<li><%= link_to 'Logoff', destroy_user_session_path, :confirm => 'Deseja efetur logoff?'%></li>									  
-		</ul>
-    </div>
-  	<br/>
-    <div class="span10">
-	  <%= yield %>
-    </div>
-  </div>
-</div>
-<% else %>
-  <%= yield %>
-<%end%>
-</body>
-<%= javascript_include_tag "application" %>
-<%= javascript_include_tag "jquery.countdown" %>
+  <body>    
+    <div class="bolaodubah-header-bar" style="overflow: inherit;">
+        <div class="header content">            
+            <%= link_to (image_tag "logo.gif") , root_path, :class => 'logo' %>
+        </div>
+        <%= render 'layouts/menu' %>    
+    </div>    
+    <br/>
+    <% if user_signed_in? %>   
+      <div class="container-fluid">
+        <div class="row">
+            <div class="span3 offset1">
+                <%= render 'layouts/userInfo' %>
+            </div>
+            <div class="span9">
+                <div class="row">
+                    <div class="span12">
+                        <div class="hero-unit">
+                            <%= yield %>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    <% else %>
+      <%= yield %>
+    <%end%>
+    <hr>
+    <footer>
+        <center>
+        <p>&copy; STARTAR Tecnologia 2012</p>
+        </center>
+    </footer>
+  </body>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery.countdown" %>
 </html>
 

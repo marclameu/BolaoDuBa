@@ -1,0 +1,9 @@
+<div class="thumbnail" style="border: 1px solid black;">
+    <%= link_to (image_tag current_user.image.url(:thumb), :alt => current_user.name), current_user %>
+</div>
+<div class="caption">
+    <h3>
+        <%= current_user.name.humanize %>
+    </h3>
+</div>
+<hr style="border-bottom: 1px solid black;" />

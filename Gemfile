@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'pg', '0.13.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -23,6 +22,7 @@ end
 
 group :production do
 #  gem 'therubyracer', '~> 0.9.3.beta1'
+#  gem 'pg', '0.13.2'
 end
 
 

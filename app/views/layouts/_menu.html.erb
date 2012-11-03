@@ -1,0 +1,44 @@
+<% if user_signed_in? %>
+  <div class="header content">
+      <div class="menu">
+          <ul class="nav nav-pills pull-right ">
+              <!--
+              <li class="<%= 'active' if current_page?(root_path) %>">
+                  <%= link_to (image_tag "png/glyphicons_020_home.png") , root_path %>
+              </li>              
+              -->
+	            <li class="<%= 'active' if current_page?(partidas_da_rodada_path) %>">
+                  <%= link_to "Partidas", partidas_da_rodada_path %>
+              </li>
+	            <li class="<%= 'active' if current_page?(teams_path ) %>">
+                <%= link_to "Times", teams_path %>
+              </li>
+	            <li class="<%= 'active' if current_page?(gambles_path ) %>">
+                <%= link_to "Apostadores", gambles_path %>
+              </li>
+	            <li class="<%= 'active' if current_page?(encerrar_partidas_path ) %>">
+                <%= link_to "Encerrar", encerrar_partidas_path %>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="icon-user icon-black"></i>&nbsp;&nbsp;
+                  <%= current_user.name %> <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to(current_user) do %><i class="icon-pencil icon-black"></i>&nbsp;&nbsp; Editar Perfil<% end %>
+                      </li>
+                      <li>
+                        <%= link_to(current_user) do %><i class="icon-pencil icon-black"></i>&nbsp;&nbsp; Campeonatos<% end %>
+                      </li>
+                      <li>
+                        <%= link_to(current_user) do %><i class="icon-comment icon-black"></i>&nbsp;&nbsp; Historico Apostas    <% end %>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <%= link_to(destroy_user_session_path) do %><i class="icon-off icon-black"></i>&nbsp;&nbsp; Log Out<% end %>
+                      </li>                      
+                  </ul>
+              </li>
+          </ul>
+      </div>
+  </div>
+<% end %>
