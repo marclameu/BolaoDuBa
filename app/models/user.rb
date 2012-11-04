@@ -21,5 +21,12 @@ class User < ActiveRecord::Base
 
   # atributo imagem
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "300x180>"}
- 
+  
+  def self.ranking(round = nil)
+    unless round == nil
+      joins(:gambles => [:match => :round]).where("num_round = ?", [round.num_round]).order("user_points DESC")
+    else
+      joins(:gambles => [:match => :round]).where("num_round = ?", [Round.maximum(:num_round)]).order("user_points DESC")
+    end
+  end 
 end

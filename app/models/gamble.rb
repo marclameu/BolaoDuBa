@@ -50,6 +50,7 @@ class Gamble < ActiveRecord::Base
     if (goals_team_2 == match.goals_team2) 
       points += 1
     end
+    points
   end  
   #belongs_to :team1, :class_name => "Team", :foreign_key => 'team_1_id'
   #belongs_to :team2, :class_name => "Team", :foreign_key => 'team_2_id'

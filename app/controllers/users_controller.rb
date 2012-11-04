@@ -25,7 +25,8 @@ class UsersController < ApplicationController
   def show
     #@user = User.find(params[:id])
     if user_signed_in?
-      @user = current_user
+      #@user = current_user
+      @user = User.find(params[:id])
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @user }
@@ -48,7 +49,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = current_user
   end
 
   # POST /users
@@ -71,7 +73,8 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = current_user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -87,7 +90,8 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = current_user
     @user.destroy
 
     respond_to do |format|
@@ -97,6 +101,16 @@ class UsersController < ApplicationController
   end
   
   def new_gamble
+  end
+  
+  def ranking
+    @ranked_users = User.ranking
+    @num_round = @ranked_users.first.gambles.first.match.round.num_round
+    @championship_name = @ranked_users.first.gambles.first.match.round.championship.desc
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 end
 #Comentário de Marcelino lameu da silva

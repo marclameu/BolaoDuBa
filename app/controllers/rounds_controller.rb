@@ -97,5 +97,4 @@ class RoundsController < ApplicationController
     #match = Match.find()
     #Match.update_all(params[:round][:matches_attributes])
   end
-  
 end

@@ -5,15 +5,15 @@
 
 	<% @matches.each do |match| %>
 	    <div class="row-fluid show-grid">
+		  <div class="span1" style="margin:0 10px 0 0"><%= link_to (image_tag match.team1.image.url(:thumb)), match.team1, :class =>'basic-link' %></div>
 		  <% unless match.goals_team1 == nil %>
 		    <div class="span1" style="font-size:40px;margin:23px -30px 0 10px"><%= match.goals_team1 %></div>
 		  <% end %>
-		  <div class="span1"><%= link_to (image_tag match.team1.image.url(:thumb)), match.team1, :class =>'basic-link' %></div>
 	      <div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
-	      <div class="span1"><%= image_tag match.team2.image.url(:thumb), :alt => match.team2.name %></div>
 		  <% unless match.goals_team2 == nil %>
 		    <div class="span1" style="font-size:40px;margin:23px -30px 0 10px"><%= match.goals_team2 %></div>
 		  <% end %>
+	      <div class="span1"><%= image_tag match.team2.image.url(:thumb), :alt => match.team2.name %></div>
 		   <div class="span4 span-date"><%= standart_date(match.date_match, "/") %></div>
 	    </div>
 		<div class="article_seperator sep-teams"></div>

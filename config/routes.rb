@@ -26,6 +26,8 @@ BolaoOnline::Application.routes.draw do
   
   match 'apostar' => 'users#index'
   
+  match 'ranking' => 'users#ranking'
+  
   
 
 
