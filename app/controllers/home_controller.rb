@@ -7,4 +7,8 @@ class HomeController < ApplicationController
     end
   end
 
+  def rules
+
+  end
+
 end

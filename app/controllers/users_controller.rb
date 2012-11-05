@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :authenticate_user!, :only =>['show']
+  skip_before_filter :authenticate_user!, :only =>['show' ]
   def admin
   end
   # GET /users

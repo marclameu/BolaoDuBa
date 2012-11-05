@@ -13,6 +13,7 @@ BolaoOnline::Application.routes.draw do
 
   resources :users
   
+
   #root :to => 'users#show'
   root :to => 'home#index'
   
@@ -28,7 +29,7 @@ BolaoOnline::Application.routes.draw do
   
   match 'ranking' => 'users#ranking'
   
-  
+  match 'regras' => 'home#rules'
 
 
   # The priority is based upon order of creation:
