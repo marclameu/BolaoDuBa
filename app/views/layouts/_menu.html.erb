@@ -1,9 +1,11 @@
 <% if user_signed_in? %>
   <div class="header content">
+	 <div class="championship-div">
+		<span><%= collection_select :championship, :id, @championships, :id, :desc, :prompt => true , :prompt =>'Selecione o campeonato...' %></span>
+	 </div>
       <div class="menu">
           <ul class="nav nav-pills pull-right ">
-
-	            <li class="<%= 'active' if current_page?(partidas_da_rodada_path) %>">
+	          <li class="<%= 'active' if current_page?(partidas_da_rodada_path) %>">
                   <%= link_to "Partidas", partidas_da_rodada_path %>
               </li>
               <li class="<%= 'active' if current_page?(teams_path) %>">

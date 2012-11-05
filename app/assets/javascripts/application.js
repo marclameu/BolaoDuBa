@@ -29,7 +29,10 @@ $(document).ready(function() {
 */
 var date = new Date(jQuery('#limit_date').val());
 $('#contador').countdown({until: date, description: ''}); 
-
+$(function(){
+	//alert($("#championship_id option:selected").text());
+	$("#championship_id").val(1);
+});
 $(function() {
     $( "#user_born_date" ).datepicker({
 	    changeMonth: true,

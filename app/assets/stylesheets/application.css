@@ -6,6 +6,12 @@
 	margin:30px 0 0 40%;
 }
 
+.championship-div{
+	margin:25px 0 0 240px;
+	font-size:15px;
+	position:absolute;
+}
+
 .article_seperator {
 	display: block;
 	border-bottom-width: 1px;
