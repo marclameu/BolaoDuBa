@@ -1,0 +1,24 @@
+<% unless @users_by_championship_classification == nil %>
+<!--
+<h2 style="font-size:25px; color:#6495ED;margin-left:5%;">Classificaçao geral do <%= $current_championship %></h2>
+-->
+<div class="pontuacao-rodada" style="margin-left:5%;">
+	<table class="table table-striped">
+	    <thead>
+	      <th colspan="2" style="text-align:center;">Ranking</th>
+		</thead>
+	    <thead>
+	      <th>Jogador</th>
+	      <th>Pontuação</th>
+		</thead>
+	    <tbody>
+	    <% @users_by_championship_classification.each do |uc| %>
+	      <tr>
+	        <td><%= link_to uc.name, uc %></td>
+	        <td style="text-align:center;"><%= uc.participations.first.user_points  %></td>			
+	      </tr>  
+	    <% end %>
+	    </tbody>
+	</table>	
+</div>
+<% end %>

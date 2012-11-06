@@ -1,4 +1,4 @@
-<% unless @num_round == nil %>
+<% unless ((@num_round == nil) or (@ranked_users == nil)) %>
 <h2 style="font-size:25px; color:#6495ED;margin-left:5%;">Classificaçao da <%= @num_round.to_s %>º Rodada do <%=@championship_name%></h2>
 <div class="pontuacao-rodada" style="margin-left:5%;">
 	<!--
@@ -25,7 +25,6 @@
 		-->	
 		<% end %>
 		</tbody>
-    </table>
-	
+    </table>	
 </div>
 <% end %>

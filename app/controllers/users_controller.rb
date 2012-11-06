@@ -104,7 +104,17 @@ class UsersController < ApplicationController
   end
   
   def ranking
-    @ranked_users = User.ranking
+    championship = Championship.where("championships.desc = '#{$current_championship}'")
+    championship = championship.first unless championship == nil
+    @users_by_championship_classification = User.ranking(nil)
+    #respond_to do |format|
+    #  format.html
+    #  format.json
+    #end
+  end
+  
+  def round_classification
+    @ranked_users = User.round_classification
     @num_round = @ranked_users.first.gambles.first.match.round.num_round
     @championship_name = @ranked_users.first.gambles.first.match.round.championship.desc
     respond_to do |format|

@@ -1,7 +1,5 @@
 class MatchesController < ApplicationController
   def update_round_select
-    #puts "Olha o ID - " + params[:championship][:id].to_s
-    #@round = Round.find_by_championship_id(params[:championship][:id].to_s)
     @current_round = Round.current_round(params[:championship][:id].to_s)
     respond_to do |format|
       format.js

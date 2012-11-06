@@ -22,11 +22,26 @@ class User < ActiveRecord::Base
   # atributo imagem
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "300x180>"}
   
-  def self.ranking(round = nil)
+  #gamble ranking
+  def self.round_classification(round = nil)
     unless round == nil
       joins(:gambles => [:match => :round]).where("num_round = ?", [round.num_round]).order("user_points DESC")
     else
       joins(:gambles => [:match => :round]).where("num_round = ?", [Round.maximum(:num_round)]).order("user_points DESC")
+    end
+  end
+  
+  #Championship Classification
+  def self.ranking(championship = nil)
+    if championship == nil
+      championship = Championship.where("championships.desc = '#{$current_championship}'")
+      championship = championship.first unless championship == nil
+    end
+    unless championship == nil
+      joins(:participations => :championship).where("championship_id = ?", [championship.id])
+                                             .order("user_points DESC")
+    else
+      nil
     end
   end 
 end
