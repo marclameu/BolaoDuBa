@@ -10,3 +10,12 @@
 <div>
 	<%= render "users/ranking", :locals => {:users_by_championship_classification => @users_by_championship_classification} %>
 </div>
+<div class="caption">
+    <h4>
+        <% if current_user.teams.first != nil %>      
+          <%= current_user.teams[0] == nil %>
+        <% else %>
+          <small>Oh meu amigo escolhe um time aí <%= link_to 'Clique aqui', edit_user_path(current_user) %> </small>
+        <% end %>
+    </h4>
+</div>
