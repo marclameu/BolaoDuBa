@@ -32,6 +32,8 @@ BolaoOnline::Application.routes.draw do
   #match 'ranking' => 'users#ranking'
   
   match 'regras' => 'home#rules'
+  
+  match 'finish_round_and_pontuate_users' => 'users#finish_round_and_pontuate_users'
 
 
   # The priority is based upon order of creation:
