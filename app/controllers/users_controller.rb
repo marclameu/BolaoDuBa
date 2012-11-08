@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, :only =>['show' ]
+  skip_before_filter :ranking, :only =>['ranking' ]
+  
   def admin
   end
   # GET /users

@@ -71,6 +71,12 @@
     </div>
   </div>
   <div class="control-group">
+    <label class="control-label" for="inputPassword">Selecione o campeonato </label>
+    <div class="controls">
+      <%= collection_select :championship, :id, @championships, :id, :desc, :prompt => true , :prompt =>'Selecione o campeonato' %>                      
+    </div>
+  </div>
+  <div class="control-group">
     <div class="controls">
       <%= f.submit "Cadastrar", :class => 'btn btn-primary btn-large'%>
       <%= link_to "Voltar ", root_path, :class => 'btn btn-primary btn-large' %>
