@@ -1,0 +1,19 @@
+<% unless ((@round == nil) or (@round.num_round == nil) or (@ranked_users == nil)) %>
+<h2 style="font-size:25px; color:#6495ED;margin-left:5%;">Classificaçao da <%= @round.num_round.to_s %>º Rodada do <%=@championship_name%></h2>
+<div class="pontuacao-rodada" style="margin-left:5%;">
+	<table class="table table-striped">
+		<thead>
+		  <th>Jogador</th>
+		  <th>Pontuação</th>
+		</thead>
+		<tbody>
+		<% @ranked_users.each do |ru| %>
+		  <tr>
+		    <td><%= link_to ru.name, ru %></td>
+		    <td><%= ru.gambles.first.user_points  %></td>			
+		  </tr>  
+		<% end %>
+		</tbody>
+    </table>	
+</div>
+<% end %>
