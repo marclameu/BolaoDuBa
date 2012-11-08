@@ -1,0 +1,28 @@
+
+<fieldset>
+  <legend> Informções do Jiow </legend> 
+</br>
+<h3>
+<%= image_tag current_user.teams.first.image.url(:thumb) %>
+<%= userInfo.teams.first.description %>
+</h3>
+</br>
+  <dl>
+    <dt>Nome</dt>
+    <dd><%= userInfo.name %></dd>
+    </br>
+    <dt>Email</dt>
+    <dd><%= userInfo.email %></dd>
+    </br>
+    <dt>Data Nasicmento</dt>
+    <dd><%= userInfo.born_date.strftime("%d/%m/%Y") %></dd>
+    </br>
+    <dt>Time do Coração</dt>
+    <dd> <%= userInfo.teams.first.name %>  </dd>
+  </dl>
+</fieldset>
+
+<hr>
+
+<%= link_to "Voltar ", :back, :class => 'btn btn-primary btn-large' %>    
+

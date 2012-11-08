@@ -1,21 +1,23 @@
 <div class="thumbnail" style="border: 1px solid black;">
     <%= link_to (image_tag current_user.image.url(:thumb), :alt => current_user.name), current_user %>
 </div>
-<div class="caption">
-    <h3>
-        <%= current_user.name.humanize %>
-    </h3>
+<div class="caption">     
+    <blockquote>
+      <h4>
+        <center>
+          <%= current_user.name.humanize %>
+        </center>
+      </h4>        
+      <% if current_user.teams.first == nil %>      
+        <small>Oh meu amigo escolhe um time aí <%= link_to 'Clique aqui', edit_user_path(current_user) %> </small>
+      <% else %>
+        <%= image_tag current_user.teams.first.image.url(:thumb) %>
+        <%= current_user.teams.first.description %> 
+      <% end %>
+    </blockquote>
 </div>
 <hr style="border-bottom: 1px solid black;" />
 <div>
 	<%= render "users/ranking", :locals => {:users_by_championship_classification => @users_by_championship_classification} %>
 </div>
-<div class="caption">
-    <h4>
-        <% if current_user.teams.first != nil %>      
-          <%= current_user.teams[0] == nil %>
-        <% else %>
-          <small>Oh meu amigo escolhe um time aí <%= link_to 'Clique aqui', edit_user_path(current_user) %> </small>
-        <% end %>
-    </h4>
-</div>
+
