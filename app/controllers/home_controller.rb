@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     if !user_signed_in?
        redirect_to new_user_session_path
     end
+    @championships = Championship.all
+    session[:championship_id] = @championships.first.id
   end
 
   def rules

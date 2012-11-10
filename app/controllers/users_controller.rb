@@ -132,6 +132,11 @@ class UsersController < ApplicationController
     @users_by_championship_classification = User.ranking
     round_classification
   end
+  
+  def set_championship_id_session  
+    session[:championship_id] = params[:championship][:id]
+  end
+  
 end
 #Comentário de Marcelino lameu da silva
 #Mais um comentário de Marcelino lameu da silva
