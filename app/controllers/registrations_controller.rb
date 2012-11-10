@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
     @teams = Team.all
-    @championships = Championship.all
     resource = build_resource({})
     respond_with resource
   end
@@ -14,7 +13,7 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.errors.empty? #and current_user.present?
        super   
        current_user.teams << Team.find(params[:team][:id]) if current_user.present?
-       current_user.participations << Participation.new(:championship_id => params[:championship][:id].to_i) if current_user.present?
+       current_user.participations << Participation.new(:championship_id => params[:championship][:id].to_i, :user_points => 0) if current_user.present?
     else
        respond_with resource
     end

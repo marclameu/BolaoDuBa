@@ -113,19 +113,31 @@ class UsersController < ApplicationController
     #  format.html
     #  format.json
     #end
-  end
-  
+  end  
   def round_classification
     @ranked_users = User.round_classification
     unless (@ranked_users == nil) or (@ranked_users.first == nil)
-      @num_round = @ranked_users.first.gambles.first.match.round.num_round
+      @round = @ranked_users.first.gambles.first.match.round
       @championship_name = @ranked_users.first.gambles.first.match.round.championship.desc
     end
     respond_to do |format|
       format.html
       format.json
+      format.js
     end
   end
+  
+  def finish_round_and_pontuate_users
+    @round = Round.find(params[:round_id])
+    @round.finish_round_and_pontuate_users
+    @users_by_championship_classification = User.ranking
+    round_classification
+  end
+  
+  def set_championship_id_session  
+    session[:championship_id] = params[:championship][:id]
+  end
+  
 end
 #Comentário de Marcelino lameu da silva
 #Mais um comentário de Marcelino lameu da silva
