@@ -42,7 +42,7 @@ $(function() {
         monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julio', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'], 
         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'], 
         changeYear: true,
-		yearRange: '1950:2010'
+		yearRange: '1950:2020'
 	});
     /*$( "#anim" ).change(function() {
         $( "#user_born_date" ).datepicker( "option", "showAnim", $( this ).val() );

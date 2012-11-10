@@ -24,6 +24,7 @@ class RoundsController < ApplicationController
   # GET /rounds/new
   # GET /rounds/new.json
   def new
+    @championships = Championship.all
     @round = Round.new
 
     respond_to do |format|
@@ -41,14 +42,27 @@ class RoundsController < ApplicationController
   # POST /rounds.json
   def create
     @round = Round.new(params[:round])
-
-    respond_to do |format|
-      if @round.save
-        format.html { redirect_to @round, notice: 'Round was successfully created.' }
-        format.json { render json: @round, status: :created, location: @round }
-      else
+    if params[:championship][:championship_id] == ""
+      respond_to do |format|
+        flash[:error] = "Voce deve selecionar o campeonato"
         format.html { render action: "new" }
-        format.json { render json: @round.errors, status: :unprocessable_entity }
+      end
+    else
+      @championship = Championship.find(params[:championship][:championship_id])
+      @last_round4_championship = Round.find_by_championship_id(@championship.id)
+      @round.championship = @championship
+      num_round = (@last_round4_championship == nil)? 1 : Round.maximun(:num_round) +1
+      @round.num_round = num_round
+
+
+      respond_to do |format|
+        if @round.save
+          format.html { redirect_to @round, notice: 'Round was successfully created.' }
+          format.json { render json: @round, status: :created, location: @round }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @round.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -96,5 +110,7 @@ class RoundsController < ApplicationController
     #end
     #match = Match.find()
     #Match.update_all(params[:round][:matches_attributes])
+  end
+  def num_round_select
   end
 end

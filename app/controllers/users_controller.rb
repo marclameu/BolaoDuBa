@@ -117,8 +117,10 @@ class UsersController < ApplicationController
   
   def round_classification
     @ranked_users = User.round_classification
-    @num_round = @ranked_users.first.gambles.first.match.round.num_round
-    @championship_name = @ranked_users.first.gambles.first.match.round.championship.desc
+    unless (@ranked_users == nil) or (@ranked_users.first == nil)
+      @num_round = @ranked_users.first.gambles.first.match.round.num_round
+      @championship_name = @ranked_users.first.gambles.first.match.round.championship.desc
+    end
     respond_to do |format|
       format.html
       format.json

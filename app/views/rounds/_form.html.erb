@@ -10,18 +10,22 @@
       </ul>
     </div>
   <% end %>
+  <% if flash[:error] %>
+      <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>Um erro foi encontrado</strong><br/>
+      <ul>
+     <li><%= flash[:error] %></li>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= f.label :num_round %><br />
-    <%= f.text_field :num_round %>
+    <%= f.label :descrição %>
+    <%= f.text_field :desc  %>
   </div>
   <div class="field">
-    <%= f.label :desc %><br />
-    <%= f.text_field :desc %>
-  </div>
-  <div class="field">
-    <%= f.label :id_championship %><br />
-    <%= f.text_field :id_championship %>
+    <%= select_tag "championship[championship_id]", options_from_collection_for_select(@championships,"id","desc"), :prompt => "Selecione o campeonato" %> 
   </div>
   <div class="actions">
     <%= f.submit %>
