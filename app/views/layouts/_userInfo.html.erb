@@ -10,7 +10,7 @@
       </h4>        
       <% if current_user.teams.first == nil %>      
         <small>Oh meu amigo escolhe um time aí <%= link_to 'Clique aqui', edit_user_path(current_user) %> </small>
-      <% else %>
+      <% else %>  
         <%= image_tag current_user.teams.first.image.url(:thumb) %>
         <%= current_user.teams.first.description %> 
       <% end %>

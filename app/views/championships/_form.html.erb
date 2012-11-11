@@ -1,21 +1,42 @@
 <%= form_for(@championship) do |f| %>
-  <% if @championship.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@championship.errors.count, "error") %> prohibited this championship from being saved:</h2>
 
+
+  <% if @championship.errors.any?%>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>Foram encontrados alguns erros:</strong><br/>
       <ul>
-      <% @championship.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+      <% @championship.errors.each do |field, message|%>
+          <li><%= "#{field.capitalize} #{message}" %></li>
+       <% end %>
       </ul>
-    </div>
-  <% end %>
+    </div> 
+  <% end %> 
 
-  <div class="field">
-    <%= f.label :desc %><br />
-    <%= f.text_field :desc %>
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Nome: </label>
+    <div class="controls">
+      <%= f.text_field :desc, :placeholder => 'Nome' %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Data Inicio Campeonato:</label>
+    <div class="controls">                
+      <%= f.text_field :start_date, :value => date_mdY(@championship.start_date), :class=>"ui-date-picker" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Data Termino Campeonato:</label>
+    <div class="controls">                
+      <%= f.text_field :end_date, :value => date_mdY(@championship.end_date), :class=>"ui-date-picker" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit buttonName, :class => 'btn btn-primary btn-large'%>
+      <%= link_to "Voltar ", championships_path, :class => 'btn btn-primary btn-large' %>
+    </div>
   </div>
 <% end %>

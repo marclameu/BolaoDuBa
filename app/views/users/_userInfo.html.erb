@@ -1,28 +1,40 @@
-
 <fieldset>
-  <legend> Informções do Jiow </legend> 
-</br>
-<h3>
-<%= image_tag current_user.teams.first.image.url(:thumb) %>
-<%= userInfo.teams.first.description %>
-</h3>
-</br>
-  <dl>
-    <dt>Nome</dt>
-    <dd><%= userInfo.name %></dd>
-    </br>
-    <dt>Email</dt>
-    <dd><%= userInfo.email %></dd>
-    </br>
-    <dt>Data Nasicmento</dt>
-    <dd><%= userInfo.born_date.strftime("%d/%m/%Y") %></dd>
-    </br>
-    <dt>Time do Coração</dt>
-    <dd> <%= userInfo.teams.first.name %>  </dd>
-  </dl>
-</fieldset>
-
+  <legend> Informações do <b> <%=userInfo.name%>  </b></legend> 
+  </br>
+  <div class="row-fluid">
+    <div class="span4" >
+      <div class="thumbnail" style="border: 1px solid black;">
+        <%= link_to (image_tag userInfo.image.url(:thumb), :alt => userInfo.name), userInfo %>
+      </div>
+    </div>
+    <div class="span5" style="margin-left: 5%;">
+      <legend>Torcedor do Time</legend>
+      <p>
+        <h3>
+          <%= image_tag userInfo.teams.first.image.url(:thumb) %>
+          <%= userInfo.teams.first.description %>
+        </h3>   
+      </p>
+    </div>
+  </div>
 <hr>
-
-<%= link_to "Voltar ", :back, :class => 'btn btn-primary btn-large' %>    
+  <div class="row-fluid">
+    <div class="span4">
+       <legend>Dados</legend>
+      <dl>
+        <dt>Email</dt>
+        <dd><%= userInfo.email %></dd>
+        </br>
+        <dt>Data Nasicmento</dt>
+        <dd><%= userInfo.born_date.strftime("%d/%m/%Y") %></dd>
+        </br>       
+      </dl>
+    </div>
+    <div class="span5" style="margin-left: 5%;">
+      <legend>Participa dos campeonatos</legend>
+      <%= render 'userChampionships', :userInfo => userInfo  %>
+    </div>
+  </div> 
+</fieldset>
+<hr>
 

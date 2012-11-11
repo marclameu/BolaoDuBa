@@ -34,7 +34,7 @@ $('#contador').countdown({until: date, description: ''});
 	$("#championship_id").val(1);
 });*/
 $(function() {
-    $( "#user_born_date" ).datepicker({
+    $( "input.ui-date-picker" ).datepicker({
 	    changeMonth: true,
 		dateFormat: 'dd/mm/yy', 
 		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
