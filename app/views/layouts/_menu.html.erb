@@ -1,9 +1,10 @@
 <% if user_signed_in? %>
   <div class="header content">
 	 <div class="championship-div">
-		<span><%= collection_select :championship, :id, @championships, :id, :desc, :prompt => true, 
-                 :prompt =>'Selecione o campeonato...', :selected => session[:championship_id],
-                 :onchange => "$.post('#{set_championship_id_session_path}', {'_method':'get', 'championship[id]':this.value});" %></span>
+		<span>
+		<%= select_tag "championship[championship_id]", options_from_collection_for_select(@championships,"id","desc", :selected => session[:championship_id]), 
+		   :onchange => "$.post('#{set_championship_id_session_path}', {'_method':'get', 'championship[id]':this.value} );" %>
+		</span>	 
 	 </div>
       <div class="menu">
           <ul class="nav nav-pills pull-right ">

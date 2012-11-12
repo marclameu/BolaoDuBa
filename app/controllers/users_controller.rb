@@ -132,12 +132,7 @@ class UsersController < ApplicationController
     @round.finish_round_and_pontuate_users#(session[:championship_id])
     @users_by_championship_classification = User.ranking
     round_classification
-  end
-  
-  def set_championship_id_session  
-    session[:championship_id] = params[:championship][:id]
-  end
-  
+  end  
 end
 #Comentário de Marcelino lameu da silva
 #Mais um comentário de Marcelino lameu da silva

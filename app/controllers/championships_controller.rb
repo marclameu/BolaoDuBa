@@ -80,4 +80,7 @@ class ChampionshipsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def set_championship_id_session  
+    session[:championship_id] = params[:championship][:id]
+  end
 end
