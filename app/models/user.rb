@@ -44,4 +44,10 @@ class User < ActiveRecord::Base
       nil
     end
   end 
+  
+  #Caso o usuário não tenha feito aposta "gamble", será criada uma aposta default
+  #Este método será chamado no encerramento da rodada
+  def self.create_default_gamble4_match(round)
+    
+  end
 end

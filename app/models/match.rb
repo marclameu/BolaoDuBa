@@ -17,7 +17,11 @@ class Match < ActiveRecord::Base
   end
   #obtém as partidas da última rodada associadas a um time
   def self.user_matches4_last_round(user_team)
-    joins(:round).where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and num_round = #{Round.maximum(:num_round)}")
+    unless Round.maximum(:num_round) == nil
+      joins(:round).where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and num_round = #{Round.maximum(:num_round)}")
+    else
+      nil
+    end
   end
   def self.user_matches(user_team)
     where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and date_match >= '#{ApplicationHelper.get_utc_time}'")
