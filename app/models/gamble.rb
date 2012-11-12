@@ -12,14 +12,14 @@ class Gamble < ActiveRecord::Base
   
   def self.create_gamble4_user(gamble,user)
     @gamble = gamble
-    @gamble.user = user   
-    @gambles =  find_all_user_gambles_except_last_round(user.id)
-    unless(@gambles == nil)
-      @gambles.each do |g|
-        g.active = false
-        g.save
-      end
-    end
+    #@gamble.user = user   
+    #@gambles =  find_all_user_gambles_except_last_round(user.id)
+    #unless(@gambles == nil)
+    #  @gambles.each do |g|
+    #    g.active = false
+    #    g.save
+    #  end
+    #end
     @gamble.active = true
     @gamble
     #@gamble.save
@@ -29,7 +29,7 @@ class Gamble < ActiveRecord::Base
     joins(:match => :round).where("num_round = #{Round.maximum(:num_round)}").paginate(:page => page, :per_page => 4)
   end    
   def self.find_all_user_gambles_except_last_round(user_id)
-    @gambles = joins(:match => :round).where("user_id = #{user_id} and num_round <> #{Round.maximum(:num_round)}")
+    joins(:match => :round).where("user_id = #{user_id} and num_round <> #{Round.maximum(:num_round)}")
   end
   def self.find_user_gamble4_last_round(user_id)
     @gambles = joins(:match => :round).where("user_id = #{user_id} and num_round = #{Round.maximum(:num_round)}")

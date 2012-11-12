@@ -97,7 +97,7 @@ class RoundsController < ApplicationController
   
   def round4_finish
     @matches = Match.last_round_matches
-    @round = Match.first.round if (@matches.present?) and (@matches.first.round != nil)
+    @round = @matches.first.round if (@matches.present?) and (@matches.first.round != nil)
   end
   
   def update_matches
