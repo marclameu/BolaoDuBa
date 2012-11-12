@@ -1,0 +1,23 @@
+<% if !userInfo.championships.empty?  %>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Campeonato</th>
+      <th>Posição</th>
+      <th>Pontuação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% userInfo.championships.each do |c| %>
+      <tr>
+        <td><%= c.desc %></td>
+        <td><%= c.desc %></td>
+        <td><%= c.participations.first.user_points %></td>
+      </tr>
+    <% end %>    
+  </tbody>
+</table>
+<% else %>
+  </br>
+  Não esta disputando nenhum campeonato ainda!
+<% end %>

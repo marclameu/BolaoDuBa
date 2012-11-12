@@ -2,7 +2,7 @@ class ChampionshipsController < ApplicationController
   # GET /championships
   # GET /championships.json
   def index
-    @championships = Championship.all
+    @championships = Championship.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,8 +43,8 @@ class ChampionshipsController < ApplicationController
     @championship = Championship.new(params[:championship])
 
     respond_to do |format|
-      if @championship.save
-        format.html { redirect_to @championship, notice: 'Championship was successfully created.' }
+      if  @championship.save
+        format.html { redirect_to championships_url, notice: 'Campeonato ' + @championship.desc + ' foi criado com sucesso!'  }
         format.json { render json: @championship, status: :created, location: @championship }
       else
         format.html { render action: "new" }

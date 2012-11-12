@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   #Por enquanto, só será considerado o primeiro time escolhido pelo usuário
   def index
     if current_user.teams.present?
-      team_user_id = current_user.teams.first.id
+      team_user_id = current_user.teams.first.id    
       @match = Match.user_matches4_last_round(team_user_id)
     end
     unless @match == nil

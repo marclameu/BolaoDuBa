@@ -1,0 +1,35 @@
+<div class="bs-docs-example">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Inicio</th>
+        <th>Fim</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @championships.each do |championship| %>
+        <tr>
+          <td><%= championship.id %></td>
+          <td><%= championship.desc %></td>
+          <td><%= date_mdY(championship.start_date) %></td>
+          <td><%= date_mdY(championship.end_date) %></td>
+          <td>
+            <%= link_to championship do %>
+              <i class="icon-search icon-black"></i>&nbsp;&nbsp;
+            <% end %>
+
+            <%= link_to edit_championship_path(championship)  do %>
+              <i class="icon-pencil icon-black"></i>&nbsp;&nbsp;   
+            <% end %>
+
+            <%= link_to championship, method: :delete, data: { confirm: 'Esta certo disso? Posso deletar?' }  do %>
+              <i class="icon-remove icon-black"></i>&nbsp;&nbsp;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

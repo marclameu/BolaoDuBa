@@ -16,6 +16,9 @@ class Match < ActiveRecord::Base
     #where("date_match >= ?", [date]).paginate(:page => page, :per_page => 4 ).order('date_match ASC')
   end
   #obtém as partidas da última rodada associadas a um time
+  #def self.user_matches4_last_round(user_team)
+  #  joins(:round).where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and num_round = #{Round.maximum(:num_round)}")
+  #end
   def self.user_matches4_last_round(user_team)
     unless Round.maximum(:num_round) == nil
       joins(:round).where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and num_round = #{Round.maximum(:num_round)}")

@@ -1,6 +1,12 @@
-<h2>Fala Jiow, agora você apostar</h2>
+<h3>
+<% if current_user.teams.present? %>
+	Fala <%= current_user.name %>, torcedor(a) do <%= current_user.teams.first.name %>, você está no bolao du bah!!!<br/></span>
+<% else %>
+ 	Fala <%= current_user.name %>, você está no bolao du bah!!!<br/></span>
+<% end %>
+</h3>
 
-<p>O jiow se você já sabe as regras do bolão pode clicar em apostar logo e nao perde tempo ledo regras hehehe !!!</p>
+<p>O jiow se você já sabe as regras do bolão pode clicar em apostar logo e não perder tempo ledo regras hehehe !!!</p>
 
 <p>Agora se tu é fraco e não conhece ainda clica no botão AZUL que esta escrito REGRAS lá para vê como eh essa bagaça!!</p>
 

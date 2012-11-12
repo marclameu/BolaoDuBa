@@ -1,23 +1,16 @@
-<h1>Listing championships</h1>
+<h3>Campeonatos</h3>
 
-<table>
-  <tr>
-    <th>Desc</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @championships.each do |championship| %>
-  <tr>
-    <td><%= championship.desc %></td>
-    <td><%= link_to 'Show', championship %></td>
-    <td><%= link_to 'Edit', edit_championship_path(championship) %></td>
-    <td><%= link_to 'Destroy', championship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<%if !notice.to_s.empty? %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <ul>   
+        <li><%= notice %></li>
+    </ul>
+  </div>
 <% end %>
-</table>
 
-<br />
+<%= render 'list' %>
 
-<%= link_to 'New Championship', new_championship_path %>
+<hr>
+
+<%= link_to 'Novo', new_championship_path, :class => 'btn btn-primary btn-large' %>

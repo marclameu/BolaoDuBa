@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :ranking
   $current_championship = "Campeonato Brasileiro" #avaliar furutamente se é uma boa opção utilizar variaveis globais
   def ranking
-    @users_by_championship_classification = User.ranking.limit(10)
+    @users_by_championship_classification = nil
+    #@users_by_championship_classification = User.ranking.limit(10)
   end
   
   def get_championships
