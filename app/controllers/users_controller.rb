@@ -129,7 +129,7 @@ class UsersController < ApplicationController
   
   def finish_round_and_pontuate_users
     @round = Round.find(params[:round_id])
-    @round.finish_round_and_pontuate_users
+    @round.finish_round_and_pontuate_users(session[:championship_id])
     @users_by_championship_classification = User.ranking
     round_classification
   end
