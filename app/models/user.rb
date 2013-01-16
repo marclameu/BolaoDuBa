@@ -38,10 +38,15 @@ class User < ActiveRecord::Base
       championship = championship.first unless championship == nil
     end
     unless championship == nil
-      joins(:participations => :championship).where("championship_id = ?", [championship.id])
-                                             .order("user_points DESC")
+      joins(:participations => :championship).where("championship_id = ?", [championship.id]).order("user_points DESC")
     else
       nil
     end
   end 
+  
+  #Caso o usuário não tenha feito aposta "gamble", será criada uma aposta default
+  #Este método será chamado no encerramento da rodada
+  def self.create_default_gamble4_match(round)
+    
+  end
 end

@@ -35,7 +35,7 @@ BolaoOnline::Application.routes.draw do
   
   match 'finish_round_and_pontuate_users' => 'users#finish_round_and_pontuate_users'
   
-  match 'set_championship_id_session' => 'users#set_championship_id_session'
+  match 'set_championship_id_session' => 'championships#set_championship_id_session'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

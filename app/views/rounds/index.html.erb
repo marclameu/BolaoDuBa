@@ -1,27 +1,35 @@
-<h1>Listing rounds</h1>
-
-<table>
-  <tr>
-    <th>Num round</th>
-    <th>Desc</th>
-    <th>Id championship</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @rounds.each do |round| %>
-  <tr>
-    <td><%= round.num_round %></td>
-    <td><%= round.desc %></td>
-    <td><%= round.championship_id %></td>
-    <td><%= link_to 'Show', round %></td>
-    <td><%= link_to 'Edit', edit_round_path(round) %></td>
-    <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<div class="flickr_pagination">
+    <%= will_paginate @rounds, :previous_label => '← Anterior', :next_label => 'Próximo →', :container => false %>
+</div>
+<% unless @rounds == nil %>
+	<div class="bs-docs-grid">
+	<% @rounds.each do |round| %>
+	    <h2 style="font-size:30px; color:#6495ED;margin-left:20%;"><%= round.num_round.to_s %>º Rodada do <%= round.championship.desc%></h2>
+		<br/>	
+		<% unless (round.matches == nil) or (round.matches.count == 0 )%>
+			<% round.matches.each do |match| %>
+			    <div class="row-fluid show-grid">
+				  <div class="span1" style="margin:0 10px 0 0"><%= link_to (image_tag match.team1.image.url(:thumb)), match.team1, :class =>'basic-link' %></div>
+				  <% unless match.goals_team1 == nil %>
+				    <div class="span1" style="font-size:40px;margin:23px -30px 0 10px"><%= match.goals_team1 %></div>
+				  <% end %>
+			      <div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
+				  <% unless match.goals_team2 == nil %>
+				    <div class="span1" style="font-size:40px;margin:23px -30px 0 10px"><%= match.goals_team2 %></div>
+				  <% end %>
+			      <div class="span1"><%= image_tag match.team2.image.url(:thumb), :alt => match.team2.name %></div>
+				   <div class="span4 span-date"><%= standart_date(match.date_match, "/") %></div>
+			    </div>
+				<div class="article_seperator sep-teams"></div>
+			<br/>
+			<br/>
+			<% end %>
+		<% else %>
+		  	<h3>Ainda não há partidas cadastradas para a <%= round.num_round %>º rodada</h3>
+		<% end %>
+	<% end %>	
+	</div>
+	<br />
+<% else %>
+  	<h2>Pô cara ainda não há partidas cadastradas para a próxima rodada, espera aí Jiow blz?...</h2>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Round', new_round_path %>

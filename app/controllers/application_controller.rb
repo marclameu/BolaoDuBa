@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   def ranking
     #@users_by_championship_classification = nil
     @users_by_championship_classification = User.ranking.limit(10)
+   # @users_by_championship_classification = nil
+    #@users_by_championship_classification = User.ranking.limit(4)
   end
   
   def get_championships

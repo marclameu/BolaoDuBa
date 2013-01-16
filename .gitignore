@@ -11,11 +11,11 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+#/log/*.log
 /tmp
 
 # Ignore all database.yml
-/config/database.yml
+#/config/database.yml
 
 # Ignore all images of teams
 /public/system/teams

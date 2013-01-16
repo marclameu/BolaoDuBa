@@ -33,7 +33,7 @@ gem 'jquery-rails'
 
 gem 'twitter-bootstrap-rails'
 
-gem 'paperclip'
+gem 'paperclip', '~> 2.7.0'
 
 gem 'will_paginate'
 

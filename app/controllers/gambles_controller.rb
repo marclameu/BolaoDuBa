@@ -44,7 +44,8 @@ class GamblesController < ApplicationController
      @match = Match.find(params[:match_id])
      @gamble = Gamble.new(params[:gamble])
      @gamble.match = @match
-     @gamble = Gamble.create_gamble4_user(@gamble, current_user)    
+     @gamble.user = current_user
+     #@gamble = Gamble.create_gamble4_user(@gamble, current_user)    
      respond_to do |format|
        unless ((ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours))
          if @gamble.save

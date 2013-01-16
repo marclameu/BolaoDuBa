@@ -6,7 +6,7 @@ class HomeController < ApplicationController
        redirect_to new_user_session_path
     end
     @championships = Championship.all
-    session[:championship_id] = !@championships.empty? ?  @championships.first.id : nil
+    #session[:championship_id] = !@championships.empty? ?  @championships.first.id : nil
   end
 
   def rules

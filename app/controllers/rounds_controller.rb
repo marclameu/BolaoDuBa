@@ -2,7 +2,7 @@ class RoundsController < ApplicationController
   # GET /rounds
   # GET /rounds.json
   def index
-    @rounds = Round.all
+    @rounds = Round.get_all_rounds_by_championship_id(session[:championship_id], params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -51,7 +51,7 @@ class RoundsController < ApplicationController
       @championship = Championship.find(params[:championship][:championship_id])
       @last_round4_championship = Round.find_by_championship_id(@championship.id)
       @round.championship = @championship
-      num_round = (@last_round4_championship == nil)? 1 : Round.maximun(:num_round) +1
+      num_round = (@last_round4_championship == nil)? 1 : Round.maximum(:num_round) +1
       @round.num_round = num_round
 
 
@@ -97,7 +97,7 @@ class RoundsController < ApplicationController
   
   def round4_finish
     @matches = Match.last_round_matches
-    @round = Match.first.round if (@matches.present?) and (@matches.first.round != nil)
+    @round = @matches.first.round if (@matches.present?) and (@matches.first.round != nil)
   end
   
   def update_matches
