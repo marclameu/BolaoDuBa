@@ -10,12 +10,12 @@ role :app, "bolaodubah.com.br"                          # This may be the same a
 role :db,  "bolaodubah.com.br", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
+set :user, 'bolaodubah'
+set :use_sudo, false
+
 set :user_path, "/home/#{user}"
 set :deploy_to, "#{user_path}/bolaodubah"
 set :current_path, "#{user_path}/app_rails/bolaodubah" 
-
-set :user, 'bolaodubah'
-set :use_sudo, false
 
 set :keep_releases, 5
 ssh_options[:forward_agent] = true
