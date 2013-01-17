@@ -1,5 +1,5 @@
 set :application, "bolaodubah"
-set :repository,  "git@github.com:marclameu/Classificados.git"
+set :repository,  "git@github.com:marclameu/BolaoDuBa.git"
 set :scm, :git
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
