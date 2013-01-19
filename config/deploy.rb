@@ -5,20 +5,24 @@ set :scm, :git
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "bolaodubah.com"                          # Your HTTP server, Apache/etc
-role :app, "bolaodubah.com"                          # This may be the same as your `Web` server
-role :db,  "bolaodubah.com", :primary => true # This is where Rails migrations will run
+role :web, "bolaodubah.com.br"                          # Your HTTP server, Apache/etc
+role :app, "bolaodubah.com.br"                          # This may be the same as your `Web` server
+role :db,  "bolaodubah.com.br", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-set :user, 'bolaodubah'
+set :user, "bolaodubah"
 set :use_sudo, false
+
+#set :user_path, "/home/bolaodubah"
+#set :deploy_to, "/home/bolaodubah/apps_rails"
+#set :current_path, "#{user_path}/app_rails/bolaodubah" 
 
 set :user_path, "/home/#{user}"
 set :deploy_to, "#{user_path}/bolaodubah"
 set :current_path, "#{user_path}/app_rails/bolaodubah" 
 
-set :keep_releases, 5
-ssh_options[:forward_agent] = true
+#set :keep_releases, 5
+#ssh_options[:forward_agent] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
