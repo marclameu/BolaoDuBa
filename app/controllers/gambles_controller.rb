@@ -7,7 +7,7 @@ class GamblesController < ApplicationController
         
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @gambles }
+      format.json { render :json => @gambles }
     end
   end
 
@@ -18,7 +18,7 @@ class GamblesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @gamble }
+      format.json { render :json => @gamble }
     end
   end
 
@@ -29,7 +29,7 @@ class GamblesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @gamble }
+      format.json { render :json => @gamble }
     end
   end
 
@@ -69,11 +69,11 @@ class GamblesController < ApplicationController
 
     respond_to do |format|
       if @gamble.update_attributes(params[:gamble])
-        format.html { redirect_to @gamble, notice: 'Gamble was successfully updated.' }
+        format.html { redirect_to @gamble, :notice => 'Gamble was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @gamble.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @gamble.errors, :status => :unprocessable_entity }
       end
     end
   end

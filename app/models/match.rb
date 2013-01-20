@@ -7,8 +7,7 @@ class Match < ActiveRecord::Base
   
   #obtem todas as partidas da última rodada
   def self.last_round_matches(page = nil)
-    joins(:round).where("num_round = ?",[Round.maximum(:num_round)]).order('date_match ASC')
-    .paginate(:page => page, :per_page => 4 ) 
+    joins(:round).where("num_round = ?",[Round.maximum(:num_round)]).order('date_match ASC').paginate(:page => page, :per_page => 4 ) 
   end
   #obtém as partidas após determinada data
   def self.matches_after_date (date, page = nil)
@@ -27,8 +26,7 @@ class Match < ActiveRecord::Base
     end
   end
   def self.user_matches(user_team)
-    where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and date_match >= '#{ApplicationHelper.get_utc_time}'")
-    .order("date_match DESC")
+    where("(team_1_id = #{user_team} or team_2_id = #{user_team}) and date_match >= '#{ApplicationHelper.get_utc_time}'").order("date_match DESC")
   end  
   #Atualiza todas as apostas (Matches) vindas da tela ""round4_finish".
   def self.update_all_matches(matches)

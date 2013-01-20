@@ -6,7 +6,7 @@ class ChampionshipsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @championships }
+      format.json { render :json => @championships }
     end
   end
 
@@ -17,7 +17,7 @@ class ChampionshipsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @championship }
+      format.json { render :json => @championship }
     end
   end
 
@@ -28,7 +28,7 @@ class ChampionshipsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @championship }
+      format.json { render :json => @championship }
     end
   end
 
@@ -44,11 +44,11 @@ class ChampionshipsController < ApplicationController
 
     respond_to do |format|
       if  @championship.save
-        format.html { redirect_to championships_url, notice: 'Campeonato ' + @championship.desc + ' foi criado com sucesso!'  }
-        format.json { render json: @championship, status: :created, location: @championship }
+        format.html { redirect_to championships_url, :notice =>  'Campeonato ' + @championship.desc + ' foi criado com sucesso!'  }
+        format.json { render :json => @championship, :status =>  :created, :location =>  @championship }
       else
-        format.html { render action: "new" }
-        format.json { render json: @championship.errors, status: :unprocessable_entity }
+        format.html { render :action =>  "new" }
+        format.json { render :json => @championship.errors, :status =>  :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class ChampionshipsController < ApplicationController
 
     respond_to do |format|
       if @championship.update_attributes(params[:championship])
-        format.html { redirect_to @championship, notice: 'Championship was successfully updated.' }
+        format.html { redirect_to @championship, :notice =>  'Championship was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @championship.errors, status: :unprocessable_entity }
+        format.html { render :action =>  "edit" }
+        format.json { render :json => @championship.errors, :status =>  :unprocessable_entity }
       end
     end
   end

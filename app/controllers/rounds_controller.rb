@@ -6,7 +6,7 @@ class RoundsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @rounds }
+      format.json { render :json =>  @rounds }
     end
   end
 
@@ -17,7 +17,7 @@ class RoundsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @round }
+      format.json { render :json =>  @round }
     end
   end
 
@@ -29,7 +29,7 @@ class RoundsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @round }
+      format.json { render :json =>  @round }
     end
   end
 
@@ -45,7 +45,7 @@ class RoundsController < ApplicationController
     if params[:championship][:championship_id] == ""
       respond_to do |format|
         flash[:error] = "Voce deve selecionar o campeonato"
-        format.html { render action: "new" }
+        format.html { render :action =>  "new" }
       end
     else
       @championship = Championship.find(params[:championship][:championship_id])
@@ -57,11 +57,11 @@ class RoundsController < ApplicationController
 
       respond_to do |format|
         if @round.save
-          format.html { redirect_to @round, notice: 'Round was successfully created.' }
-          format.json { render json: @round, status: :created, location: @round }
+          format.html { redirect_to @round, :notice =>  'Round was successfully created.' }
+          format.json { render :json =>  @round, :status =>  :created, :location =>  @round }
         else
-          format.html { render action: "new" }
-          format.json { render json: @round.errors, status: :unprocessable_entity }
+          format.html { render :action =>  "new" }
+          format.json { render :json =>  @round.errors, :status =>  :unprocessable_entity }
         end
       end
     end
@@ -74,11 +74,11 @@ class RoundsController < ApplicationController
 
     respond_to do |format|
       if @round.update_attributes(params[:round])
-        format.html { redirect_to @round, notice: 'Round was successfully updated.' }
+        format.html { redirect_to @round, :notice =>  'Round was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @round.errors, status: :unprocessable_entity }
+        format.html { render :action =>  "edit" }
+        format.json { render :json =>  @round.errors, :status =>  :unprocessable_entity }
       end
     end
   end

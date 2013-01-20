@@ -21,8 +21,8 @@ set :user_path, "/home/#{user}"
 set :deploy_to, "#{user_path}/bolaodubah"
 set :current_path, "#{user_path}/app_rails/bolaodubah" 
 
-#set :keep_releases, 5
-#ssh_options[:forward_agent] = true
+set :keep_releases, 5
+ssh_options[:forward_agent] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
