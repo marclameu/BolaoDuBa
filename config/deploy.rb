@@ -19,7 +19,7 @@ set :use_sudo, false
 
 set :user_path, "/home/#{user}"
 set :deploy_to, "#{user_path}/bolaodubah"
-set :current_path, "#{user_path}/app_rails/bolaodubah" 
+set :current_path, "#{user_path}/apps_rails/bolaodubah" 
 
 set :keep_releases, 5
 ssh_options[:forward_agent] = true

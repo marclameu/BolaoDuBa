@@ -2,8 +2,10 @@ class RoundsController < ApplicationController
   # GET /rounds
   # GET /rounds.json
   def index
-    @rounds = Round.get_all_rounds_by_championship_id(session[:championship_id], params[:page])
-
+    championship = Championship.find_by_desc($current_championship)
+    unless championship == nil?
+      @rounds = Round.get_all_rounds_by_championship_id(championship.id, params[:page])
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json =>  @rounds }

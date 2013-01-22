@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   def self.ranking(championship = nil)
     if championship == nil
       championship = Championship.where("championships.desc = '#{$current_championship}'")
-      championship = championship.first unless championship == nil
+      #championship = championship.first unless championship == nil
     end
     unless championship == nil
       joins(:participations => :championship).where("championship_id = ?", [championship.id]).order("user_points DESC")
