@@ -6,10 +6,15 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    resource = build_resource({})
-    #build_resource
-    resource.errors.add("", "Escolha seu time") if params[:team][:id] == ""
-    resource.errors.add("", "Voce deve selecionar um campeonato") if params[:championship][:id] == ""
+    #resource = build_resource({})
+    resource = build_resource({}) if resource == nil
+    resource.errors.add("-", "Escolha seu time") if params[:team][:id] == ""
+    resource.errors.add("-", "Voce deve selecionar um campeonato") if params[:championship][:id] == ""
+    resource.errors.add("-", "Insira seu email") if params[:user][:email] == ""
+    resource.errors.add("-", "Insira seu CPF") if params[:user][:cpf] == ""
+    resource.errors.add("-", "Insira sua data de nascimento") if params[:user][:born_date] == ""
+    resource.errors.add("-", "Insira sua senha") if params[:user][:password] == ""
+
     if resource.errors.empty? #and current_user.present?
        super   
        current_user.teams << Team.find(params[:team][:id]) if current_user.present?

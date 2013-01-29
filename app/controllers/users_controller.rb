@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, :only =>['show' ]
-  skip_before_filter :ranking, :only =>['ranking' ]
+  #skip_before_filter :ranking, :only =>['ranking' ]
   
   def admin
   end
@@ -106,6 +106,7 @@ class UsersController < ApplicationController
   end
   
   def ranking
+    super.ranking
     championship = Championship.where("championships.desc = '#{$current_championship}'")
     championship = championship.first unless championship == nil
     @users_by_championship_classification = User.ranking(nil)

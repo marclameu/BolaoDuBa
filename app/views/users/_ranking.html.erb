@@ -15,7 +15,7 @@
 	    <% @users_by_championship_classification.each do |uc| %>
 	      <tr>
 	        <td><%= link_to uc.name, uc %></td>
-	        <td style="text-align:center;"><%= uc.participations.first.user_points  %></td>			
+	        <td style="text-align:center;"><%= uc.participations.first.user_points  %></td>	
 	      </tr>  
 	    <% end %>
 	    </tbody>

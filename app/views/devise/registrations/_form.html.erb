@@ -14,7 +14,11 @@
         <strong>Foram encontrados alguns erros:</strong><br/>
         <ul>
         <% resource.errors.each do |field, message|%>
-            <li><%= "#{field.capitalize} #{message}" %></li>
+            <%#begin %>
+              
+            <% #rescue %>
+              <li><%= "#{message}" %></li>  
+            <%# end %>
          <% end %>
         </ul>
       </div> 

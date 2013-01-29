@@ -10,7 +10,9 @@
   <%= stylesheet_link_tag "bootstrap" %>
   <%= stylesheet_link_tag "docs" %>
   <%= stylesheet_link_tag "jquery.countdown.css"%>
-  <%= javascript_include_tag :defaults %> 
+  <%= stylesheet_link_tag "jquery-ui-sliderAccess" %> 
+  <%= stylesheet_link_tag "jquery-ui-timepicker-addon.js" %>   
+
   <%= csrf_meta_tags %>
 </head>
   <body>    
@@ -47,8 +49,10 @@
         </center>
     </footer>
   </body>
+  <%= javascript_include_tag :defaults %> 
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery.countdown" %>
+
 
 </html>
 

@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :date_match, "Data da Partida" %><br />
-    <%= f.datetime_select :date_match	%>
+    <%= f.text_field :date_match, :class=>"ui-date-time-picker"	%>
   </div>
   <div class="field">
 	<% if @championships.present? %>

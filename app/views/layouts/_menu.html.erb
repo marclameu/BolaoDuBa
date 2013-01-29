@@ -8,16 +8,16 @@
 	 </div>
       <div class="menu">
           <ul class="nav nav-pills pull-right ">
+            <li class="<%= 'active' if current_page?(apostar_path) %>">
+                  <%= link_to "Apostar", apostar_path %>
+            </li> 
 	          <li class="<%= 'active' if current_page?(partidas_da_rodada_path) %>">
-                  <%= link_to "Partidas", rounds_path %>
+                  <%= link_to "Partidas", partidas_da_rodada_path %>
               </li>
-              <li class="<%= 'active' if current_page?(teams_path) %>">
-                  <%= link_to "Rodadas", round_classification_path %>
+              <li class="<%= 'active' if current_page?(rounds_path) %>">
+                  <%= link_to "Rodadas", rounds_path %>
               </li>
-              <li class="<%= 'active' if current_page?(gambles_path) %>">
-                  <%= link_to "Noticias", gambles_path %>
-              </li>	 
-  
+   
               <!-- Este menu é para os usuarios administradores do sistema, ou seja os high levels -->        
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">                  
                   Administração <b class="caret"></b></a>
