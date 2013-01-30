@@ -1,7 +1,10 @@
 class Round < ActiveRecord::Base
   belongs_to :championship
   has_many :matches
-  attr_accessible :desc, :num_round
+  attr_accessible :desc, :num_round, :start_date, :end_date
+
+  validates_presence_of :start_date, :end_date, :message => "sdasd"
+
   def self.current_round(championship_id) 
     where("championship_id = ? and num_round = ? ",[championship_id], [Round.maximum(:num_round)]).limit(1).first
   end

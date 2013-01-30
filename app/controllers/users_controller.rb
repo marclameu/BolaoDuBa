@@ -74,8 +74,8 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.json
-  def update
-    #@user = User.find(params[:id])
+  def update    
+    params[:user][:born_date] = Date.strptime(params[:user][:born_date], '%d/%m/%Y').strftime.to_s
     @user = current_user
 
     respond_to do |format|

@@ -16,6 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
     resource.errors.add("-", "Insira sua senha") if params[:user][:password] == ""
 
     if resource.errors.empty? #and current_user.present?
+       params[:user][:born_date] = Date.strptime(params[:user][:born_date], '%d/%m/%Y').strftime.to_s unless params[:user][:born_date] == nil       
        super   
        current_user.teams << Team.find(params[:team][:id]) if current_user.present?
        current_user.participations << Participation.new(:championship_id => params[:championship][:id].to_i, :user_points => 0) if current_user.present?

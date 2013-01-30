@@ -4,7 +4,7 @@
 <% unless @rounds == nil %>
 	<div class="bs-docs-grid">
 	<% @rounds.each do |round| %>
-	    <h2 style="font-size:30px; color:#6495ED;margin-left:20%;"><%= round.num_round.to_s %>º Rodada do <%= round.championship.desc%></h2>
+	    <h2 style="font-size:30px; color:#6495ED;margin-left:20%; text-align:center;">Resultados da <%= round.num_round.to_s %>º Rodada do <%= round.championship.desc%></h2>
 		<br/>	
 		<% unless (round.matches == nil) or (round.matches.count == 0 )%>
 			<% round.matches.each do |match| %>

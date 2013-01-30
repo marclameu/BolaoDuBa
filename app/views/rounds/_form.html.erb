@@ -27,6 +27,14 @@
   <div class="field">
     <%= select_tag "championship[championship_id]", options_from_collection_for_select(@championships,"id","desc"), :prompt => "Selecione o campeonato" %> 
   </div>
+    <div class="field">
+    <%= f.label :data_inicio %>
+    <%= f.text_field :start_date, :class =>"ui-date-picker"  %>
+  </div>
+    <div class="field">
+    <%= f.label :data_fim %>
+    <%= f.text_field :end_date, :class =>"ui-date-picker"  %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
