@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_filter :admin_user
+
   def new
     @teams = Team.all
     resource = build_resource({})

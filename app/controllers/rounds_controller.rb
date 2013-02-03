@@ -1,4 +1,5 @@
 class RoundsController < ApplicationController
+  skip_before_filter :admin_user, :only => [:index, :show]
   # GET /rounds
   # GET /rounds.json
   def index
@@ -44,6 +45,9 @@ class RoundsController < ApplicationController
   # POST /rounds.json
   def create
     @round = Round.new(params[:round])
+    params[:round][:start_date] = Date.strptime(params[:round][:start_date], '%d/%m/%Y').strftime.to_s
+    params[:round][:end_date] = Date.strptime(params[:round][:end_date], '%d/%m/%Y').strftime.to_s
+
     if params[:championship][:championship_id] == ""
       respond_to do |format|
         flash[:error] = "Voce deve selecionar o campeonato"
@@ -73,6 +77,8 @@ class RoundsController < ApplicationController
   # PUT /rounds/1.json
   def update
     @round = Round.find(params[:id])
+    params[:round][:start_date] = Date.strptime(params[:round][:start_date], '%d/%m/%Y').strftime.to_s
+    params[:round][:end_date] = Date.strptime(params[:round][:end_date], '%d/%m/%Y').strftime.to_s
 
     respond_to do |format|
       if @round.update_attributes(params[:round])

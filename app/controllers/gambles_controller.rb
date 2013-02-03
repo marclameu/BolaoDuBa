@@ -1,5 +1,7 @@
 class GamblesController < ApplicationController
   respond_to :js
+  skip_before_filter :admin_user
+
   # GET /gambles
   # GET /gambles.json
   def index
@@ -45,16 +47,17 @@ class GamblesController < ApplicationController
      @gamble = Gamble.new(params[:gamble])
      @gamble.match = @match
      @gamble.user = current_user
-     #@gamble = Gamble.create_gamble4_user(@gamble, current_user)    
-     respond_to do |format|
+        
+     respond_to do |format|       
        unless ((ApplicationHelper.get_utc_time) >= (@match.date_match - 2.hours))
-         if @gamble.save
-           @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
-           @gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : nil
+         @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+         if ((!@gamble4_current_match.present?) and (@gamble.save))
+           @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])           
            flash[:notice] = "A aposta esta feita Giow!"
-         else
-             @gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
+         #else
+             #@gamble4_current_match = current_user.gambles.joins(:match).where("matches.id = ?",[@match.id])
          end
+         @gamble = (@gamble4_current_match.present?)? @gamble4_current_match.first : nil
        else
           flash[:notice] = "Nao foi possivel realizar sua aposta, tempo limite excedido!"
        end

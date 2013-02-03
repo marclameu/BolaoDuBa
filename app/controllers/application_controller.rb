@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :get_championships
   before_filter :ranking
+  before_filter :admin_user
+
   $current_championship = "Campeonato Brasileiro" #avaliar furutamente se é uma boa opção utilizar variaveis globais    
   def ranking
     championship = Championship.find_by_desc($current_championship)
@@ -11,5 +13,18 @@ class ApplicationController < ActionController::Base
   
   def get_championships
     @championships = Championship.all
+  end
+
+  protected
+  
+  def admin_user
+    unless params[:controller] == 'devise/sessions' 
+      if user_signed_in?
+        emails_permitidos = %(marclameu@gmail.com flavioapolinario1@gmail.com)
+        unless emails_permitidos.include?(current_user.email)
+          redirect_to root_path
+        end
+      end
+    end
   end
 end

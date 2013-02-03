@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  skip_before_filter :admin_user
+
   def update_round_select
     @current_round = Round.current_round(params[:championship][:id].to_s)
     respond_to do |format|

@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  skip_before_filter :admin_user, :only => [:index, :show]
+
   # GET /teams
   # GET /teams.json
   def index
@@ -80,4 +82,5 @@ class TeamsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

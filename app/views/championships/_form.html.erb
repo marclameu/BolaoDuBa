@@ -7,7 +7,7 @@
       <strong>Foram encontrados alguns erros:</strong><br/>
       <ul>
       <% @championship.errors.each do |field, message|%>
-          <li><%= "#{field.capitalize} #{message}" %></li>
+          <li><%= "#{message}" %></li>
        <% end %>
       </ul>
     </div> 

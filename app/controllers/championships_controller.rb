@@ -1,4 +1,6 @@
 class ChampionshipsController < ApplicationController
+  skip_before_filter :admin_user, :only => [:index, :show, :set_championship_id_session]
+
   # GET /championships
   # GET /championships.json
   def index
@@ -40,6 +42,8 @@ class ChampionshipsController < ApplicationController
   # POST /championships
   # POST /championships.json
   def create
+    params[:championship][:start_date] = Date.strptime(params[:championship][:start_date], '%d/%m/%Y').strftime.to_s
+    params[:championship][:end_date] = Date.strptime(params[:championship][:end_date], '%d/%m/%Y').strftime.to_s
     @championship = Championship.new(params[:championship])
 
     respond_to do |format|
@@ -57,6 +61,8 @@ class ChampionshipsController < ApplicationController
   # PUT /championships/1.json
   def update
     @championship = Championship.find(params[:id])
+    params[:championship][:start_date] = Date.strptime(params[:championship][:start_date], '%d/%m/%Y').strftime.to_s
+    params[:championship][:end_date] = Date.strptime(params[:championship][:end_date], '%d/%m/%Y').strftime.to_s
 
     respond_to do |format|
       if @championship.update_attributes(params[:championship])

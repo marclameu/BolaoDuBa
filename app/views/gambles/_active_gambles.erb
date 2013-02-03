@@ -1,7 +1,7 @@
 <% if @active_gambles.present? %>
 	<% @active_gambles.each do |ag| %>
 		<div class="row-fluid show-grid">
-	        <h2><small><%= ag.user.name%></small></h2>
+	        <h2><small><%= link_to ag.user.name, ag.user %></small></h2>
 			<div class="span1" style="margin:0 40px 0 0"><%= link_to (image_tag ag.match.team1.image.url(:thumb)), ag.match.team1, :class =>'basic-link' %></div>
 			<div class="span1" style="font-size:40px;margin:23px -30px 0 0"><%= ag.goals_team_1 %></div>
 			<div class="span1 span-versus"><%= image_tag ('versus.gif') %></div>
