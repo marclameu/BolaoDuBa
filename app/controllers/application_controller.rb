@@ -2,13 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate_user!
   before_filter :get_championships
-  before_filter :ranking
+  before_filter :ranking_of_side
   before_filter :admin_user
 
-  $current_championship = "Campeonato Brasileiro" #avaliar furutamente se é uma boa opção utilizar variaveis globais    
-  def ranking
+  $current_championship = "Campeonato Mineiro 2013" #avaliar furutamente se é uma boa opção utilizar variaveis globais    
+  def ranking_of_side
     championship = Championship.find_by_desc($current_championship)
-    @users_by_championship_classification = User.ranking(championship).limit(10)
+    @users_by_championship_classification = User.ranking(championship)#.limit(10)
   end
   
   def get_championships
